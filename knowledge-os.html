@@ -1,0 +1,2740 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المكتبة الشخصية — Personal Knowledge OS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════
+   DESIGN SYSTEM — CSS Custom Properties
+   ══════════════════════════════════════════ */
+:root {
+  /* Colors — Dark Mode (Default) */
+  --bg: #09090B;
+  --surface-1: #18181B;
+  --surface-2: #27272A;
+  --surface-3: #3F3F46;
+  --text-primary: #FAFAFA;
+  --text-secondary: #A1A1AA;
+  --text-muted: #52525B;
+  --accent: #22D3EE;
+  --accent-dim: rgba(34, 211, 238, 0.08);
+  --accent-border: rgba(34, 211, 238, 0.2);
+  --border: rgba(255, 255, 255, 0.06);
+  --border-hover: rgba(255, 255, 255, 0.12);
+
+  /* Colors — Light Mode */
+  --light-bg: #FAFAFA;
+  --light-surface-1: #FFFFFF;
+  --light-surface-2: #F4F4F5;
+  --light-surface-3: #E4E4E7;
+  --light-text-primary: #09090B;
+  --light-text-secondary: #52525B;
+  --light-text-muted: #A1A1AA;
+  --light-accent: #0891B2;
+  --light-accent-dim: rgba(8, 145, 178, 0.06);
+  --light-accent-border: rgba(8, 145, 178, 0.2);
+  --light-border: rgba(0, 0, 0, 0.06);
+  --light-border-hover: rgba(0, 0, 0, 0.12);
+
+  /* Typography */
+  --font-ar: 'IBM Plex Sans Arabic', 'Noto Sans Arabic', system-ui, sans-serif;
+  --font-en: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --fs-xs: 0.6875rem;   /* 11px */
+  --fs-sm: 0.8125rem;   /* 13px */
+  --fs-base: 0.9375rem; /* 15px */
+  --fs-lg: 1.125rem;    /* 18px */
+  --fs-xl: 1.5rem;      /* 24px */
+  --fs-2xl: 2rem;       /* 32px */
+  --fs-3xl: 3rem;       /* 48px */
+  --lh-reading: 1.75;
+  --lh-heading: 1.3;
+  --ls-tight: -0.02em;
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Motion */
+  --duration-micro: 150ms;
+  --duration-standard: 250ms;
+  --duration-emphasis: 400ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Layout */
+  --content-width: 680px;
+  --page-width: 1200px;
+  --nav-height: 56px;
+}
+
+/* Light mode overrides */
+[data-theme="light"] {
+  --bg: var(--light-bg);
+  --surface-1: var(--light-surface-1);
+  --surface-2: var(--light-surface-2);
+  --surface-3: var(--light-surface-3);
+  --text-primary: var(--light-text-primary);
+  --text-secondary: var(--light-text-secondary);
+  --text-muted: var(--light-text-muted);
+  --accent: var(--light-accent);
+  --accent-dim: var(--light-accent-dim);
+  --accent-border: var(--light-accent-border);
+  --border: var(--light-border);
+  --border-hover: var(--light-border-hover);
+}
+
+/* ══════════════════════════════════════════
+   RESET & BASE
+   ══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-ar);
+  background: var(--bg);
+  color: var(--text-primary);
+  font-size: var(--fs-base);
+  line-height: var(--lh-reading);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background var(--duration-standard) var(--ease-out),
+              color var(--duration-standard) var(--ease-out);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--surface-3); border-radius: var(--radius-full); }
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-ar);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-tight);
+  color: var(--text-primary);
+}
+
+.font-en { font-family: var(--font-en); }
+.font-mono { font-family: var(--font-mono); }
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ══════════════════════════════════════════
+   READING PROGRESS BAR
+   ══════════════════════════════════════════ */
+#reading-progress {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--accent);
+  z-index: 9999;
+  transition: width 100ms linear;
+  pointer-events: none;
+}
+
+/* ══════════════════════════════════════════
+   TOP NAVIGATION — Appears on scroll up
+   ══════════════════════════════════════════ */
+#topnav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-lg);
+  background: rgba(9, 9, 11, 0.85);
+  backdrop-filter: blur(12px) saturate(1.4);
+  -webkit-backdrop-filter: blur(12px) saturate(1.4);
+  border-bottom: 1px solid var(--border);
+  z-index: 1000;
+  transform: translateY(-100%);
+  transition: transform var(--duration-standard) var(--ease-out);
+}
+
+[data-theme="light"] #topnav {
+  background: rgba(250, 250, 250, 0.85);
+}
+
+#topnav.visible { transform: translateY(0); }
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.nav-title {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--text-secondary);
+  opacity: 0;
+  transition: opacity var(--duration-standard) var(--ease-out);
+}
+
+#topnav.visible .nav-title { opacity: 1; }
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--duration-micro) var(--ease-out);
+}
+
+.nav-btn:hover {
+  background: var(--surface-1);
+  color: var(--text-primary);
+  border-color: var(--border-hover);
+}
+
+.nav-dots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--duration-micro) var(--ease-out);
+}
+
+.nav-dot.active {
+  background: var(--accent);
+  width: 18px;
+}
+
+/* ══════════════════════════════════════════
+   COMMAND PALETTE (Cmd+K)
+   ══════════════════════════════════════════ */
+#cmd-palette {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 15vh;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+}
+
+#cmd-palette.open { display: flex; }
+
+.cmd-box {
+  width: 100%;
+  max-width: 560px;
+  background: var(--surface-1);
+  border: 1px solid var(--border-hover);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
+  animation: cmdSlideIn var(--duration-standard) var(--ease-out);
+}
+
+@keyframes cmdSlideIn {
+  from { opacity: 0; transform: translateY(-12px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.cmd-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--border);
+}
+
+.cmd-input-wrap svg { color: var(--text-muted); flex-shrink: 0; }
+
+.cmd-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: var(--text-primary);
+  font-family: var(--font-ar);
+  font-size: var(--fs-base);
+  outline: none;
+}
+
+.cmd-input::placeholder { color: var(--text-muted); }
+
+.cmd-results {
+  max-height: 320px;
+  overflow-y: auto;
+  padding: var(--space-sm);
+}
+
+.cmd-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background var(--duration-micro) var(--ease-out);
+}
+
+.cmd-item:hover, .cmd-item.selected {
+  background: var(--accent-dim);
+}
+
+.cmd-item-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-lg);
+  flex-shrink: 0;
+}
+
+.cmd-item-text { flex: 1; }
+.cmd-item-title { font-size: var(--fs-sm); font-weight: 500; color: var(--text-primary); }
+.cmd-item-sub { font-size: var(--fs-xs); color: var(--text-muted); }
+
+.cmd-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-sm) var(--space-lg);
+  border-top: 1px solid var(--border);
+}
+
+.cmd-hint { font-size: var(--fs-xs); color: var(--text-muted); font-family: var(--font-en); }
+
+kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 20px;
+  padding: 0 5px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-family: var(--font-en);
+  font-size: 10px;
+  color: var(--text-secondary);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FEATURED CONTENT — Pull Quotes, Golden Rules, Progress
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Pull Quote — Editorial magazine-style */
+.pull-quote {
+  position: relative;
+  margin: 2rem 0;
+  padding: 1.75rem 2rem 1.75rem 2.5rem;
+  border-right: 3px solid var(--accent);
+  background: linear-gradient(135deg, rgba(102,252,241,0.03) 0%, transparent 60%);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+.pull-quote::before {
+  content: '"';
+  position: absolute;
+  top: -8px;
+  right: 12px;
+  font-size: 4rem;
+  font-family: Georgia, serif;
+  color: var(--accent);
+  opacity: 0.15;
+  line-height: 1;
+}
+.pull-quote p {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.9;
+  color: var(--text-primary);
+  margin: 0;
+}
+.pull-quote cite {
+  display: block;
+  margin-top: 0.75rem;
+  font-size: 0.75rem;
+  font-style: normal;
+  color: var(--text-secondary);
+  letter-spacing: 0.3px;
+}
+
+/* Golden Rule Card */
+.golden-rule {
+  position: relative;
+  margin: 1.5rem 0;
+  padding: 1.25rem 1.5rem;
+  background: linear-gradient(135deg, rgba(245,158,11,0.06) 0%, rgba(234,179,8,0.03) 100%);
+  border: 1px solid rgba(245,158,11,0.2);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.golden-rule::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, #F59E0B, #EAB308);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+.golden-rule-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: #F59E0B;
+  margin-bottom: 0.5rem;
+}
+.golden-rule-label::before {
+  content: '🏆';
+  font-size: 1rem;
+}
+.golden-rule-text {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.8;
+}
+.golden-rule-text strong {
+  color: #F59E0B;
+}
+
+/* Fatal Error Card */
+.fatal-error {
+  position: relative;
+  margin: 1.5rem 0;
+  padding: 1.25rem 1.5rem;
+  background: linear-gradient(135deg, rgba(239,68,68,0.05) 0%, rgba(239,68,68,0.02) 100%);
+  border: 1px solid rgba(239,68,68,0.18);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.fatal-error::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, #EF4444, #DC2626);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+.fatal-error-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: #EF4444;
+  margin-bottom: 0.5rem;
+}
+.fatal-error-label::before {
+  content: '⚠️';
+  font-size: 1rem;
+}
+.fatal-error-text {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+/* Scenario Progress Indicator */
+.scenario-progress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 1rem 0;
+  padding: 0.75rem 1rem;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+.scenario-progress-bar {
+  flex: 1;
+  height: 6px;
+  background: var(--surface-2);
+  border-radius: 99px;
+  overflow: hidden;
+  position: relative;
+}
+.scenario-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), #06B6D4);
+  border-radius: 99px;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+.scenario-progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  animation: progressShimmer 2s ease-in-out infinite;
+}
+@keyframes progressShimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+.scenario-progress-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  min-width: 70px;
+  text-align: left;
+  font-family: var(--font-en);
+}
+.scenario-progress-label span {
+  color: var(--accent);
+  font-weight: 800;
+}
+
+/* Featured Content Card */
+.featured-card {
+  position: relative;
+  margin: 1.5rem 0;
+  padding: 1.5rem 1.75rem;
+  background: linear-gradient(140deg, rgba(102,252,241,0.04) 0%, rgba(6,182,212,0.02) 100%);
+  border: 1px solid rgba(102,252,241,0.15);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.featured-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(ellipse at center, rgba(102,252,241,0.04), transparent 70%);
+  pointer-events: none;
+}
+.featured-card-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+  padding: 4px 10px;
+  background: rgba(102,252,241,0.08);
+  border: 1px solid rgba(102,252,241,0.15);
+  border-radius: 99px;
+}
+.featured-card-eyebrow .dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 99px;
+  background: var(--accent);
+  box-shadow: 0 0 6px var(--accent);
+  animation: featuredPulse 2s ease-in-out infinite;
+}
+@keyframes featuredPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.featured-card-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.2px;
+}
+.featured-card-body {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.85;
+}
+
+/* Module Stats Badge */
+.module-stats {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 14px;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin: 0.5rem 0;
+}
+.module-stat-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+}
+.module-stat-item .num {
+  font-family: var(--font-en);
+  font-weight: 800;
+  color: var(--accent);
+  font-size: 0.8rem;
+}
+
+/* Scenario Level Badges — Enhanced */
+.level-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 99px;
+}
+.level-badge.best {
+  background: rgba(102,252,241,0.1);
+  color: var(--accent);
+  border: 1px solid rgba(102,252,241,0.25);
+  box-shadow: 0 0 12px rgba(102,252,241,0.1);
+}
+.level-badge.good {
+  background: rgba(34,197,94,0.08);
+  color: #22C55E;
+  border: 1px solid rgba(34,197,94,0.2);
+}
+.level-badge.bad {
+  background: rgba(239,68,68,0.08);
+  color: #EF4444;
+  border: 1px solid rgba(239,68,68,0.2);
+}
+
+/* Principle Connection Line */
+.principle-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--accent);
+  padding: 4px 10px;
+  background: rgba(102,252,241,0.06);
+  border: 1px solid rgba(102,252,241,0.12);
+  border-radius: 99px;
+  margin-top: 0.75rem;
+}
+.principle-tag::before {
+  content: '◆';
+  font-size: 0.5rem;
+  opacity: 0.6;
+}
+</style>
+</head>
+<body data-theme="dark">
+<div id="reading-progress"></div>
+
+
+<!-- TOP NAVIGATION -->
+<nav id="topnav">
+  <div class="nav-right">
+    <span class="nav-title" id="nav-page-title"></span>
+  </div>
+  <div class="nav-left">
+    <div class="nav-dots" id="nav-dots"></div>
+    <button class="nav-btn" onclick="toggleTheme()" title="تبديل المظهر" aria-label="Toggle theme">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    </button>
+    <button class="nav-btn" onclick="openCmdPalette()" title="البحث (Ctrl+K)" aria-label="Search">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+    </button>
+    <button class="nav-btn" onclick="navigateTo('home')" title="الرئيسية" aria-label="Home">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12l9-9 9 9M5 10v10a1 1 0 001 1h3a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1h3a1 1 0 001-1V10"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- COMMAND PALETTE -->
+<div id="cmd-palette" onclick="if(event.target===this)closeCmdPalette()">
+  <div class="cmd-box">
+    <div class="cmd-input-wrap">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+      <input class="cmd-input" id="cmd-input" placeholder="ابحث في المكتبة..." autocomplete="off">
+    </div>
+    <div class="cmd-results" id="cmd-results"></div>
+    <div class="cmd-footer">
+      <span class="cmd-hint"><kbd>Esc</kbd> للإغلاق</span>
+      <span class="cmd-hint"><kbd>↵</kbd> للفتح</span>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT AREA -->
+<main id="app-main">
+</main>
+
+
+<style>
+/* ══════════════════════════════════════════
+   PAGE LAYOUTS
+   ══════════════════════════════════════════ */
+.page {
+  display: none;
+  min-height: 100vh;
+  padding: var(--space-3xl) var(--space-lg);
+  max-width: var(--page-width);
+  margin: 0 auto;
+  animation: pageIn var(--duration-standard) var(--ease-out);
+}
+
+.page.active { display: block; }
+
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ══════════════════════════════════════════
+   HOME — Bento Grid
+   ══════════════════════════════════════════ */
+.home-header {
+  margin-bottom: var(--space-3xl);
+  max-width: 640px;
+}
+
+.home-greeting {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-bottom: var(--space-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.home-title {
+  font-size: var(--fs-3xl);
+  font-weight: 700;
+  margin-bottom: var(--space-md);
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.home-subtitle {
+  font-size: var(--fs-lg);
+  color: var(--text-secondary);
+  line-height: var(--lh-reading);
+}
+
+/* Bento Grid */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto;
+  gap: var(--space-md);
+}
+
+.bento-cell {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  transition: all var(--duration-standard) var(--ease-out);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.bento-cell:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.bento-cell::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--accent-dim), transparent 60%);
+  opacity: 0;
+  transition: opacity var(--duration-standard) var(--ease-out);
+  pointer-events: none;
+}
+
+.bento-cell:hover::after { opacity: 1; }
+
+/* Bento sizes */
+.bento-lg { grid-column: span 5; grid-row: span 2; }
+.bento-md { grid-column: span 4; }
+.bento-sm { grid-column: span 3; }
+.bento-wide { grid-column: span 8; }
+.bento-full { grid-column: span 12; }
+
+@media (max-width: 900px) {
+  .bento-lg, .bento-md, .bento-sm, .bento-wide, .bento-full {
+    grid-column: span 12;
+  }
+  .bento-lg { grid-row: span 1; }
+}
+
+/* Bento cell content */
+.bento-eyebrow {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: var(--space-sm);
+}
+
+.bento-title {
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  margin-bottom: var(--space-sm);
+}
+
+.bento-desc {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  line-height: var(--lh-reading);
+}
+
+.bento-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+.bento-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  background: var(--accent-dim);
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.bento-progress {
+  margin-top: var(--space-md);
+  height: 3px;
+  background: var(--surface-2);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.bento-progress-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: var(--radius-full);
+  transition: width var(--duration-emphasis) var(--ease-out);
+}
+
+/* Quote card */
+.bento-quote {
+  font-size: var(--fs-lg);
+  font-style: italic;
+  color: var(--text-secondary);
+  line-height: var(--lh-reading);
+  margin-bottom: var(--space-md);
+  position: relative;
+  padding-right: var(--space-lg);
+}
+
+.bento-quote::before {
+  content: '"';
+  position: absolute;
+  right: 0;
+  top: -8px;
+  font-size: 48px;
+  color: var(--accent);
+  opacity: 0.3;
+  font-family: var(--font-en);
+}
+
+.bento-quote-author {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  font-style: normal;
+}
+
+/* Stats in bento */
+.bento-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+}
+
+.bento-stat-item {
+  text-align: center;
+}
+
+.bento-stat-num {
+  font-family: var(--font-en);
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.bento-stat-label {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* Module list inside bento */
+.bento-module-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.bento-module-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  transition: all var(--duration-micro) var(--ease-out);
+}
+
+.bento-module-item:hover {
+  background: var(--surface-2);
+  border-color: var(--border-hover);
+}
+
+.bento-module-icon {
+  font-size: var(--fs-lg);
+  width: 32px;
+  text-align: center;
+}
+
+.bento-module-name {
+  flex: 1;
+  font-size: var(--fs-sm);
+  font-weight: 500;
+}
+
+.bento-module-count {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  font-family: var(--font-en);
+}
+
+/* ══════════════════════════════════════════
+   MODULE PAGE — Magazine Layout
+   ══════════════════════════════════════════ */
+.module-page {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: var(--space-3xl) var(--space-lg);
+}
+
+.module-hero {
+  margin-bottom: var(--space-3xl);
+  padding-bottom: var(--space-2xl);
+  border-bottom: 1px solid var(--border);
+}
+
+.module-back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  margin-bottom: var(--space-xl);
+  cursor: pointer;
+  transition: color var(--duration-micro) var(--ease-out);
+  border: none;
+  background: none;
+  font-family: var(--font-ar);
+}
+
+.module-back:hover { color: var(--text-primary); }
+
+.module-category {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: var(--space-md);
+}
+
+.module-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: var(--space-md);
+}
+
+.module-subtitle {
+  font-size: var(--fs-lg);
+  color: var(--text-secondary);
+  line-height: var(--lh-reading);
+  margin-bottom: var(--space-lg);
+}
+
+.module-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-lg);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+.module-meta-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+/* Section navigation (sticky) */
+.module-sections-nav {
+  position: sticky;
+  top: var(--nav-height);
+  background: var(--bg);
+  padding: var(--space-md) 0;
+  margin-bottom: var(--space-xl);
+  z-index: 10;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: var(--space-xs);
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.module-sections-nav::-webkit-scrollbar { display: none; }
+
+.section-tab {
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-full);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--text-muted);
+  white-space: nowrap;
+  cursor: pointer;
+  border: 1px solid transparent;
+  background: transparent;
+  font-family: var(--font-ar);
+  transition: all var(--duration-micro) var(--ease-out);
+}
+
+.section-tab:hover { color: var(--text-secondary); background: var(--surface-1); }
+.section-tab.active {
+  color: var(--accent);
+  background: var(--accent-dim);
+  border-color: var(--accent-border);
+}
+
+/* Principle card */
+.principle-card {
+  margin-bottom: var(--space-2xl);
+  padding: var(--space-xl);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: var(--surface-1);
+  transition: border-color var(--duration-standard) var(--ease-out);
+}
+
+.principle-card:hover { border-color: var(--border-hover); }
+
+.principle-header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.principle-number {
+  font-family: var(--font-en);
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+  color: var(--accent);
+  opacity: 0.5;
+  line-height: 1;
+  min-width: 40px;
+}
+
+.principle-titles { flex: 1; }
+
+.principle-name {
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.principle-name-en {
+  font-family: var(--font-en);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.principle-source {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  margin-top: var(--space-sm);
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--border);
+}
+
+.principle-body { margin-top: var(--space-lg); }
+
+.principle-section {
+  margin-bottom: var(--space-lg);
+}
+
+.principle-section-label {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: var(--space-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.principle-section-label::before {
+  content: '';
+  width: 12px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.principle-text {
+  font-size: var(--fs-base);
+  color: var(--text-secondary);
+  line-height: var(--lh-reading);
+}
+
+.principle-example {
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+  border-right: 3px solid var(--accent);
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  line-height: var(--lh-reading);
+}
+
+.principle-phrase {
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  background: var(--accent-dim);
+  border: 1px solid var(--accent-border);
+  font-size: var(--fs-base);
+  font-weight: 500;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+.principle-warning {
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  background: rgba(239, 68, 68, 0.05);
+  border: 1px solid rgba(239, 68, 68, 0.15);
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+}
+
+.principle-connections {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.principle-conn-tag {
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+/* Pull quote */
+.pull-quote {
+  margin: var(--space-2xl) calc(-1 * var(--space-lg));
+  padding: var(--space-xl) var(--space-lg);
+  border-right: 3px solid var(--accent);
+  font-size: var(--fs-xl);
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: var(--lh-reading);
+  font-style: italic;
+}
+
+/* ══════════════════════════════════════════
+   SCENARIOS PAGE
+   ══════════════════════════════════════════ */
+.scenario-container {
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+.scenario-card {
+  margin-bottom: var(--space-2xl);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.scenario-header {
+  padding: var(--space-lg);
+  background: var(--surface-1);
+  border-bottom: 1px solid var(--border);
+}
+
+.scenario-context {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  line-height: var(--lh-reading);
+  margin-top: var(--space-sm);
+}
+
+.scenario-body { padding: var(--space-lg); }
+
+.scenario-options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.scenario-opt {
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all var(--duration-standard) var(--ease-out);
+  position: relative;
+}
+
+.scenario-opt:hover {
+  border-color: var(--border-hover);
+  background: var(--surface-1);
+}
+
+.scenario-opt.selected-good {
+  border-color: rgba(34, 197, 94, 0.4);
+  background: rgba(34, 197, 94, 0.05);
+}
+
+.scenario-opt.selected-best {
+  border-color: var(--accent-border);
+  background: var(--accent-dim);
+}
+
+.scenario-opt.selected-bad {
+  border-color: rgba(239, 68, 68, 0.3);
+  background: rgba(239, 68, 68, 0.05);
+}
+
+.scenario-opt-level {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: var(--space-xs);
+  opacity: 0;
+  transition: opacity var(--duration-standard) var(--ease-out);
+}
+
+.scenario-opt.revealed .scenario-opt-level { opacity: 1; }
+
+.scenario-opt-text {
+  font-size: var(--fs-base);
+  color: var(--text-primary);
+}
+
+.scenario-explanation {
+  margin-top: var(--space-md);
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  display: none;
+  animation: slideDown var(--duration-standard) var(--ease-out);
+}
+
+.scenario-explanation.show { display: block; }
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.scenario-explanation-title {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: var(--space-sm);
+}
+
+.scenario-explanation-text {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  line-height: var(--lh-reading);
+}
+
+/* ══════════════════════════════════════════
+   ACTIVE RECALL — Flashcards
+   ══════════════════════════════════════════ */
+.recall-container {
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+.recall-stats {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xl);
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-md);
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+}
+
+.recall-stat {
+  text-align: center;
+}
+
+.recall-stat-num {
+  font-family: var(--font-en);
+  font-size: var(--fs-xl);
+  font-weight: 700;
+}
+
+.recall-stat-label {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+.flashcard-stack {
+  perspective: 1200px;
+  margin-bottom: var(--space-xl);
+}
+
+.flashcard {
+  width: 100%;
+  min-height: 280px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s var(--ease-out);
+  cursor: pointer;
+}
+
+.flashcard.flipped { transform: rotateX(180deg); }
+
+.flashcard-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  padding: var(--space-2xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.flashcard-front {
+  background: var(--surface-1);
+}
+
+.flashcard-back {
+  background: var(--surface-1);
+  transform: rotateX(180deg);
+  border-color: var(--accent-border);
+}
+
+.flashcard-question {
+  font-size: var(--fs-xl);
+  font-weight: 600;
+  line-height: var(--lh-reading);
+  margin-bottom: var(--space-md);
+}
+
+.flashcard-hint {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+.flashcard-answer {
+  font-size: var(--fs-lg);
+  color: var(--text-secondary);
+  line-height: var(--lh-reading);
+}
+
+.recall-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+}
+
+.recall-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-xl);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border);
+  background: var(--surface-1);
+  color: var(--text-primary);
+  font-family: var(--font-ar);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--duration-micro) var(--ease-out);
+}
+
+.recall-btn:hover {
+  background: var(--surface-2);
+  border-color: var(--border-hover);
+}
+
+.recall-btn.know {
+  border-color: rgba(34, 197, 94, 0.3);
+  color: #22C55E;
+}
+
+.recall-btn.know:hover { background: rgba(34, 197, 94, 0.08); }
+
+.recall-btn.dont-know {
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #EF4444;
+}
+
+.recall-btn.dont-know:hover { background: rgba(239, 68, 68, 0.08); }
+
+/* ══════════════════════════════════════════
+   SETTINGS PAGE
+   ══════════════════════════════════════════ */
+.settings-container {
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+.settings-section {
+  margin-bottom: var(--space-2xl);
+}
+
+.settings-section-title {
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  margin-bottom: var(--space-md);
+}
+
+.settings-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md) 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.settings-label {
+  font-size: var(--fs-base);
+  color: var(--text-secondary);
+}
+
+.settings-btn {
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface-1);
+  color: var(--text-primary);
+  font-family: var(--font-ar);
+  font-size: var(--fs-sm);
+  cursor: pointer;
+  transition: all var(--duration-micro) var(--ease-out);
+}
+
+.settings-btn:hover {
+  background: var(--surface-2);
+  border-color: var(--border-hover);
+}
+
+.settings-btn.danger {
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #EF4444;
+}
+
+.settings-btn.danger:hover { background: rgba(239, 68, 68, 0.08); }
+
+/* Toggle switch */
+.toggle {
+  width: 44px;
+  height: 24px;
+  background: var(--surface-3);
+  border-radius: var(--radius-full);
+  position: relative;
+  cursor: pointer;
+  transition: background var(--duration-micro) var(--ease-out);
+}
+
+.toggle.on { background: var(--accent); }
+
+.toggle::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 18px;
+  height: 18px;
+  background: white;
+  border-radius: var(--radius-full);
+  transition: transform var(--duration-micro) var(--ease-out);
+}
+
+.toggle.on::after { transform: translateX(-20px); }
+
+/* ══════════════════════════════════════════
+   CHEAT SHEET
+   ══════════════════════════════════════════ */
+.cheatsheet {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: var(--space-xl);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface-1);
+}
+
+.cheatsheet-title {
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-md);
+  border-bottom: 2px solid var(--accent);
+}
+
+.cheatsheet-list {
+  list-style: none;
+}
+
+.cheatsheet-list li {
+  padding: var(--space-sm) 0;
+  border-bottom: 1px solid var(--border);
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+}
+
+.cheatsheet-list li::before {
+  content: '—';
+  color: var(--accent);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.golden-rule {
+  margin-top: var(--space-lg);
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+  background: var(--accent-dim);
+  border: 1px solid var(--accent-border);
+  text-align: center;
+}
+
+.golden-rule-label {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: var(--space-sm);
+}
+
+.golden-rule-text {
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* ══════════════════════════════════════════
+   BOOKMARKS PAGE
+   ══════════════════════════════════════════ */
+.bookmarks-list {
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+.bookmark-item {
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  margin-bottom: var(--space-md);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  transition: border-color var(--duration-micro) var(--ease-out);
+}
+
+.bookmark-item:hover { border-color: var(--border-hover); }
+
+.bookmark-source {
+  font-size: var(--fs-xs);
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.bookmark-text {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+.bookmark-remove {
+  margin-right: auto;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bookmark-remove:hover { color: #EF4444; background: rgba(239, 68, 68, 0.08); }
+</style>
+
+
+<script>
+/* ══════════════════════════════════════════
+   [STORE] — State Management (localStorage)
+   ══════════════════════════════════════════ */
+const Store = {
+  KEY: 'knowledge-os-v1',
+  defaults: {
+    theme: 'dark',
+    completedModules: [],
+    bookmarks: [],
+    recallResults: {},
+    scenarioResults: {},
+    lastVisited: null,
+    streak: 0,
+    lastActiveDate: null
+  },
+  get() {
+    try {
+      const raw = localStorage.getItem(this.KEY);
+      return raw ? { ...this.defaults, ...JSON.parse(raw) } : { ...this.defaults };
+    } catch { return { ...this.defaults }; }
+  },
+  set(data) {
+    localStorage.setItem(this.KEY, JSON.stringify(data));
+  },
+  update(key, value) {
+    const state = this.get();
+    state[key] = value;
+    this.set(state);
+  },
+  addBookmark(bm) {
+    const state = this.get();
+    if (!state.bookmarks.find(b => b.id === bm.id)) {
+      state.bookmarks.push(bm);
+      this.set(state);
+    }
+  },
+  removeBookmark(id) {
+    const state = this.get();
+    state.bookmarks = state.bookmarks.filter(b => b.id !== id);
+    this.set(state);
+  },
+  markModuleComplete(moduleId) {
+    const state = this.get();
+    if (!state.completedModules.includes(moduleId)) {
+      state.completedModules.push(moduleId);
+      this.set(state);
+    }
+  },
+  saveRecall(moduleId, correct, total) {
+    const state = this.get();
+    if (!state.recallResults[moduleId]) state.recallResults[moduleId] = [];
+    state.recallResults[moduleId].push({ correct, total, date: Date.now() });
+    this.set(state);
+  },
+  exportData() {
+    return JSON.stringify(this.get(), null, 2);
+  },
+  importData(json) {
+    try {
+      const data = JSON.parse(json);
+      this.set({ ...this.defaults, ...data });
+      return true;
+    } catch { return false; }
+  },
+  reset() {
+    localStorage.removeItem(this.KEY);
+  }
+};
+</script>
+
+
+<script>
+/* ══════════════════════════════════════════
+   [DATA] — Knowledge Modules Content
+   ══════════════════════════════════════════ */
+const DATA = {
+  quotes: [
+    { text: "الناس لا يشترون ما تفعله، بل يشترون لماذا تفعله.", author: "Simon Sinek", book: "Start with Why" },
+    { text: "لا تتفاوض أبداً وكأنك تُقسّم كعكة — الكعكة يمكن أن تكبر.", author: "Chris Voss", book: "Never Split the Difference" },
+    { text: "نحن لا نتخذ قراراتنا بناءً على الواقع، بل بناءً على إدراكنا للواقع.", author: "Daniel Kahneman", book: "Thinking Fast and Slow" },
+    { text: "أقوى أشكال التأثير هو ذلك الذي يحدث قبل أن تبدأ رسالتك.", author: "Robert Cialdini", book: "Pre-Suasion" },
+    { text: "الأسئلة هي أقوى أداة بيع تمتلكها. النصائح تُقاوَم، لكن الأسئلة تُستقبَل.", author: "Neil Rackham", book: "SPIN Selling" }
+  ],
+  modules: [
+    {
+      id: "influence",
+      title: "التأثير والإقناع",
+      titleEn: "Influence & Persuasion",
+      icon: "🧠",
+      category: "علم نفس",
+      author: "Robert Cialdini",
+      year: 1984,
+      book: "Influence: The Psychology of Persuasion",
+      difficulty: "متوسط",
+      readTime: "25 دقيقة",
+      description: "المبادئ الستة التي تحكم قرارات البشر — من أكثر الكتب تأثيراً في علم النفس التطبيقي. فهم هذه المبادئ يعني فهم لماذا يقول الناس «نعم».",
+      principleCount: 6,
+      scenarioCount: 5,
+      principles: [
+        {
+          name: "المعاملة بالمثل",
+          nameEn: "Reciprocity",
+          source: "Cialdini, R. (1984). Influence: The Psychology of Persuasion. Harper Business.",
+          explanation: "حين تُقدّم شيئاً لشخص — حتى لو كان صغيراً — يشعر بدافع داخلي لردّ الجميل. هذا ليس أدباً فقط، بل آلية نفسية عميقة بُنيت عليها المجتمعات البشرية. الهدية غير المتوقعة أقوى من المتوقعة، والشخصية أقوى من المادية.",
+          example: "مدير مبيعات في شركة اتصالات سعودية يرسل لعميل محتمل تقريراً مجانياً عن اتجاهات السوق في قطاعه — قبل أي محادثة بيعية. بعد أسبوع، العميل يردّ على المكالمة التي كان يتجاهلها سابقاً.",
+          phrase: "أعددت لك هذا التقرير لأنني أعتقد أنه سيفيدك — بدون أي التزام من جهتك.",
+          mistake: "تقديم شيء ثم المطالبة بمقابل فوري. هذا يُحوّل الهدية إلى صفقة ويقتل الأثر النفسي تماماً.",
+          connections: ["الدليل الاجتماعي", "الالتزام والاتساق"]
+        },
+        {
+          name: "الالتزام والاتساق",
+          nameEn: "Commitment & Consistency",
+          source: "Cialdini, R. (1984). Influence. + Freedman & Fraser (1966). Foot-in-the-door technique.",
+          explanation: "حين يلتزم الإنسان بموقف صغير — حتى لو شفهياً — يصبح أكثر احتمالاً للالتزام بمواقف أكبر متسقة معه. الدماغ يكره التناقض الذاتي. ابدأ بطلب صغير جداً، ثم ابنِ عليه.",
+          example: "موظف في شركة برمجيات بالرياض يسأل العميل: «هل توافقني أن تسريع العمليات الداخلية أولوية هذا الربع؟» — بعد أن يقول نعم، يصبح من الصعب عليه رفض حل يُسرّع عملياته.",
+          phrase: "ذكرت سابقاً أن [X] مهم لكم — الحل اللي نقدمه يخدم هذا الهدف تحديداً.",
+          mistake: "القفز لطلب كبير دون بناء سلسلة التزامات صغيرة. أو تذكير العميل بالتزامه بشكل محرج يشعره بالتلاعب.",
+          connections: ["المعاملة بالمثل", "الندرة"]
+        },
+        {
+          name: "الدليل الاجتماعي",
+          nameEn: "Social Proof",
+          source: "Cialdini (1984). + Sherif, M. (1936). The Psychology of Social Norms.",
+          explanation: "في لحظات عدم اليقين، ننظر لما يفعله الآخرون — خاصة من يُشبهوننا. ليس ضعفاً، بل اختصار ذكي صممه الدماغ. الدليل الاجتماعي الأقوى: من نفس الصناعة، نفس الحجم، نفس المنطقة.",
+          example: "مندوب مبيعات SaaS في دبي يقول: «12 شركة تجزئة في الخليج بحجمكم انتقلت لنظامنا هذا العام — أقرب واحدة لكم جغرافياً هي [اسم]. هل تريد تتحدث مع مديرهم؟»",
+          phrase: "شركات كثيرة في قطاعكم واجهت نفس التحدي — وهذا كيف حلّوه.",
+          mistake: "استخدام أرقام مبهمة ('كثير من العملاء') بدل أرقام دقيقة. أو ذكر عملاء من قطاع مختلف تماماً — هذا لا يُقنع.",
+          connections: ["السلطة", "الإعجاب"]
+        },
+        {
+          name: "السلطة",
+          nameEn: "Authority",
+          source: "Cialdini (1984). + Milgram, S. (1963). Behavioral Study of Obedience.",
+          explanation: "نميل لطاعة وتصديق من نعتبرهم خبراء — حتى لو كانت خبرتهم ظاهرية فقط (لقب، لباس، ثقة). لكن السلطة الحقيقية تأتي من المعرفة العميقة التي تُظهرها لا التي تدّعيها. اعترف بنقطة ضعف واحدة لتكسب مصداقية.",
+          example: "استشاري في مكتب محاسبة بجدة يبدأ عرضه بقوله: «في السنوات الـ8 الماضية، ساعدت 40 شركة في نفس قطاعكم — وأقول بصراحة أن حلّنا لا يناسب كل شركة. دعوني أشرح متى ينفع ومتى لا ينفع.»",
+          phrase: "من واقع [X سنة/مشروع]، وجدت أن هذا النهج هو الأنسب لحالتكم — وسأشرح لماذا.",
+          mistake: "ادعاء خبرة لا تملكها — هذا يرتد عليك. أو الاعتماد فقط على اللقب دون إظهار معرفة حقيقية في المحادثة.",
+          connections: ["الدليل الاجتماعي", "الإعجاب"]
+        },
+        {
+          name: "الإعجاب",
+          nameEn: "Liking",
+          source: "Cialdini (1984). + Burger et al. (2001). The Effect of Fleeting Attraction.",
+          explanation: "نقول «نعم» أكثر لمن نحبهم. والإعجاب ليس سحراً — له محركات مدروسة: التشابه، المجاملة الصادقة، التعاون، والألفة. أهم قاعدة: الناس يحبون من يجعلهم يحبون أنفسهم.",
+          example: "مسؤولة تطوير أعمال في شركة تقنية بالكويت تبدأ أول 3 دقائق من كل اجتماع بسؤال شخصي حقيقي عن مشروع العميل الأخير — ليس سطحياً، بل يُظهر أنها بحثت عنه قبل الاجتماع.",
+          phrase: "تابعت مشروعكم في [X] — العمل اللي سوّيتوه حقيقي ملهم، خصوصاً الجزء المتعلق بـ[Y].",
+          mistake: "المجاملة المبالغ فيها أو الواضح أنها مصطنعة. هذا يعكس ضعفاً لا ودّاً. والأسوأ: محاولة التشابه المزيف.",
+          connections: ["المعاملة بالمثل", "الدليل الاجتماعي"]
+        },
+        {
+          name: "الندرة",
+          nameEn: "Scarcity",
+          source: "Cialdini (1984). + Worchel et al. (1975). Cookie Jar Experiment.",
+          explanation: "ما هو نادر — أو يوشك أن يصبح غير متاح — نريده أكثر. ليس لأنه أفضل موضوعياً، بل لأن خسارته تؤلم أكثر من كسبه. فعّالة جداً حين تكون حقيقية — وكارثية حين تكون مزيّفة.",
+          example: "مدير حسابات في وكالة إعلانية بالرياض يقول: «عندنا سعة لعميلين فقط هذا الربع في قطاع الأغذية — لأن فريقنا يشتغل بعمق مع كل عميل. إذا ناسبكم، نحتاج نعرف هذا الأسبوع.»",
+          phrase: "هذا العرض متاح حتى [تاريخ محدد] — بعدها نعود للشروط المعتادة.",
+          mistake: "خلق ندرة مزيّفة: 'العرض ينتهي اليوم!' ثم تكرارها كل أسبوع. هذا يقتل مصداقيتك تماماً ولا يعود العميل يصدّقك.",
+          connections: ["الالتزام والاتساق", "السلطة"]
+        }
+      ],
+      scenarios: [
+        {
+          context: "أنت مندوب مبيعات B2B وتتحدث مع مدير مشتريات لأول مرة. بعد 5 دقائق من الحديث، قال لك: «الحقيقة عندنا مورّد حالي ومرتاحين معاه». كيف ترد؟",
+          options: [
+            { text: "أفهم — لكن أعطني فرصة أشرح لك كيف نحن أفضل.", level: "bad", label: "ضعيف" },
+            { text: "شكراً لصراحتك. ما الذي يجعلكم مرتاحين معه تحديداً؟ أريد أفهم وليس أنافس.", level: "good", label: "جيد" },
+            { text: "ممتاز أن عندكم مورّد ترتاحون معه — هذا يعني أنكم تعرفون بالضبط ما تحتاجون. سؤالي: لو كان بإمكانكم تحسين شيء واحد في التجربة الحالية، ما هو؟", level: "best", label: "احترافي" }
+          ],
+          explanation: "الرد الاحترافي يستخدم مبدأ «الالتزام والاتساق» — حين يذكر العميل ما يحتاج تحسينه، يلتزم ذهنياً بأن هناك مشكلة. كما يستخدم «الإعجاب» بتقدير اختياره الحالي بدل مهاجمته.",
+          principle: "الالتزام والاتساق + الإعجاب"
+        },
+        {
+          context: "عميل محتمل طلب عرض سعر ثم اختفى لأسبوعين. تريد إعادة التواصل معه. ماذا تفعل؟",
+          options: [
+            { text: "ترسل رسالة: «تابع — هل شفت العرض؟ أبي أعرف رأيك.»", level: "bad", label: "ضعيف" },
+            { text: "ترسل دراسة حالة لعميل مشابه مع رسالة: «هذا يوضح النتائج اللي نتكلم عنها — بدون أي التزام منك.»", level: "best", label: "احترافي" },
+            { text: "تتصل وتسأل إن كان عنده أسئلة عن العرض.", level: "good", label: "جيد" }
+          ],
+          explanation: "الرد الاحترافي يستخدم «المعاملة بالمثل» — تُقدّم قيمة (دراسة حالة) دون طلب مقابل. وأيضاً «الدليل الاجتماعي» بإظهار نتائج عميل مشابه. الرد الضعيف يضغط ويُشعر العميل بالملاحقة.",
+          principle: "المعاملة بالمثل + الدليل الاجتماعي"
+        },
+        {
+          context: "أثناء عرض تقديمي لمجلس إدارة شركة كبيرة، سألك الرئيس التنفيذي: «كم شركة مثل حجمنا تستخدم حلّكم؟» وأنت تعرف أن العدد قليل (3 شركات فقط). كيف ترد؟",
+          options: [
+            { text: "«عندنا عملاء كثيرين» — تتجنب الرقم الدقيق.", level: "bad", label: "ضعيف" },
+            { text: "«حالياً 3 شركات بحجمكم — وهذا بالضبط ما يعطيكم ميزة: أنتم من أوائل من يحصل على اهتمام فريقنا الكامل. العملاء الكبار القادمون لن يحصلوا على نفس مستوى التخصيص.»", level: "best", label: "احترافي" },
+            { text: "«3 شركات — لكن كل واحدة حققت نتائج يمكنني عرضها عليكم.»", level: "good", label: "جيد" }
+          ],
+          explanation: "الرد الاحترافي يحوّل نقطة ضعف (عدد قليل) إلى نقطة قوة باستخدام «الندرة» — أنتم من القلائل الذين يحصلون على الاهتمام الكامل. وأيضاً «السلطة» من خلال الصدق والشفافية التي تبني مصداقية.",
+          principle: "الندرة + السلطة"
+        }
+      ],
+      recall: [
+        { q: "ما هي المبادئ الستة للتأثير عند Cialdini؟", a: "المعاملة بالمثل، الالتزام والاتساق، الدليل الاجتماعي، السلطة، الإعجاب، الندرة." },
+        { q: "لماذا الهدية غير المتوقعة أقوى من المتوقعة في مبدأ المعاملة بالمثل؟", a: "لأنها تُفاجئ المتلقي وتخلق شعوراً أقوى بالامتنان — المتوقعة تُعتبر واجبة ولا تُحدث نفس الأثر العاطفي." },
+        { q: "ما هي تقنية 'القدم في الباب' وكيف ترتبط بمبدأ الالتزام؟", a: "طلب صغير يُقبل أولاً، ثم بناء طلبات أكبر عليه. الشخص يميل للاتساق مع قراراته السابقة (Freedman & Fraser, 1966)." },
+        { q: "متى يكون الدليل الاجتماعي أقوى تأثيراً؟", a: "حين يأتي من أشخاص مشابهين للمتلقي: نفس القطاع، نفس الحجم، نفس المنطقة الجغرافية." },
+        { q: "كيف تبني سلطة حقيقية بسرعة في أول اجتماع؟", a: "اعترف بنقطة ضعف واحدة صادقة (ما لا يناسب حلّك)، أظهر معرفة عميقة بقطاع العميل، واستخدم أرقاماً دقيقة لا عامة." },
+        { q: "ما الفرق بين الندرة الحقيقية والمزيّفة وما أثر كل واحدة؟", a: "الحقيقية: محدودية فعلية (وقت، مقاعد، طاقة) تبني إلحاحاً صادقاً. المزيّفة: عروض 'تنتهي اليوم' تتكرر — تقتل المصداقية وتُعلّم العميل أنك تكذب." },
+        { q: "كيف يمكنك استخدام مبدأ الإعجاب دون أن تبدو مصطنعاً؟", a: "ابحث عن الشخص قبل اللقاء، اذكر شيئاً محدداً أعجبك في عمله (لا عام)، واسأل أسئلة تُظهر اهتماماً حقيقياً بتجربته لا بصفقتك." }
+      ],
+      cheatsheet: {
+        golden: "لا تبيع المنتج — بيع التغيير الذي سيحدثه في حياة العميل.",
+        points: [
+          "المعاملة بالمثل: أعطِ أولاً — بدون شروط أو توقعات فورية",
+          "الالتزام والاتساق: ابدأ بـ «نعم» صغيرة ثم ابنِ عليها",
+          "الدليل الاجتماعي: أرقام دقيقة + من نفس القطاع + اعرض تواصل مباشر",
+          "السلطة: اعترف بحدود حلّك — الصدق يبني مصداقية أسرع من الادعاء",
+          "الإعجاب: الناس يحبون من يجعلهم يحبون أنفسهم — لا من يتملّق",
+          "الندرة: استخدمها فقط حين تكون حقيقية — الكذب يُدمّر كل شيء"
+        ]
+      }
+    }
+  ]
+};
+</script>
+<script src="modules-negotiation.js"></script>
+<script src="modules-sales.js"></script>
+<script src="modules-callcenter.js"></script>
+<script src="modules-social.js"></script>
+<script src="modules-eq.js"></script>
+<script src="scenarios-sales-extra.js"></script>
+<script src="scenarios-negotiation-extra.js"></script>
+<script src="scenarios-eq-social-extra.js"></script>
+<script src="scenarios-callcenter-extra.js"></script>
+<script src="scenarios-social-extra.js"></script>
+<script src="scenarios-field-sales-extra.js"></script>
+<script src="scenarios-influence-extra.js"></script>
+
+<script>
+/* ══════════════════════════════════════════
+   [ROUTER] — Page Navigation
+   ══════════════════════════════════════════ */
+let currentPage = 'home';
+let currentModule = null;
+let currentSection = 'principles';
+
+function navigateTo(page, moduleId, section) {
+  currentPage = page;
+  if (moduleId) currentModule = moduleId;
+  if (section) currentSection = section;
+  Store.update('lastVisited', { page, moduleId, section });
+  render();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ══════════════════════════════════════════
+   [RENDER] — DOM Rendering Functions
+   ══════════════════════════════════════════ */
+function render() {
+  const main = document.getElementById('app-main');
+  main.innerHTML = '';
+
+  switch (currentPage) {
+    case 'home': renderHome(main); break;
+    case 'module': renderModule(main); break;
+    case 'scenarios': renderScenarios(main); break;
+    case 'recall': renderRecall(main); break;
+    case 'cheatsheet': renderCheatsheet(main); break;
+    case 'bookmarks': renderBookmarks(main); break;
+    case 'settings': renderSettings(main); break;
+    default: renderHome(main);
+  }
+
+  updateNavDots();
+  updateNavTitle();
+}
+
+function renderHome(container) {
+  const state = Store.get();
+  const quote = DATA.quotes[Math.floor(Math.random() * DATA.quotes.length)];
+  const completedCount = state.completedModules.length;
+  const totalModules = DATA.modules.length;
+  const progress = totalModules > 0 ? Math.round((completedCount / totalModules) * 100) : 0;
+
+  const html = `
+    <div class="page active" id="page-home">
+      <div class="home-header">
+        <div class="home-greeting">المكتبة الشخصية</div>
+        <h1 class="home-title">المعرفة التي تحتاجها،<br>مُرتبة كما تُحبّها.</h1>
+        <p class="home-subtitle">مرجعك المعرفي الشخصي — خلاصات كتب، سيناريوهات تطبيقية، واختبارات ذاتية.</p>
+      </div>
+
+      <div class="bento-grid">
+        <!-- Quote -->
+        <div class="bento-cell bento-wide" onclick="navigateTo('module','influence')">
+          <div class="bento-eyebrow">اقتباس اليوم</div>
+          <div class="bento-quote">${quote.text}</div>
+          <div class="bento-quote-author">${quote.author} — ${quote.book}</div>
+        </div>
+
+        <!-- Progress -->
+        <div class="bento-cell bento-sm">
+          <div class="bento-eyebrow">تقدمك</div>
+          <div class="bento-stat-grid">
+            <div class="bento-stat-item">
+              <div class="bento-stat-num">${completedCount}</div>
+              <div class="bento-stat-label">مكتملة</div>
+            </div>
+            <div class="bento-stat-item">
+              <div class="bento-stat-num">${totalModules}</div>
+              <div class="bento-stat-label">إجمالي</div>
+            </div>
+          </div>
+          <div class="bento-progress"><div class="bento-progress-fill" style="width:${progress}%"></div></div>
+        </div>
+
+        <!-- Module: Influence -->
+        <div class="bento-cell bento-lg" onclick="navigateTo('module','influence')">
+          <div class="bento-eyebrow">وحدة مميزة</div>
+          <div class="bento-title">🧠 التأثير والإقناع</div>
+          <div class="bento-desc">المبادئ الستة لـ Cialdini التي تحكم قرارات البشر — أكثر من 35 عاماً من البحث العلمي مُكثّفة في إطار عملي واحد.</div>
+          <div class="bento-meta">
+            <span>📖 Influence (1984)</span>
+            <span>⏱ 25 دقيقة</span>
+            <span class="bento-tag">6 مبادئ</span>
+          </div>
+        </div>
+
+        <!-- Bookmarks -->
+        <div class="bento-cell bento-sm" onclick="navigateTo('bookmarks')">
+          <div class="bento-eyebrow">المفضلات</div>
+          <div class="bento-title" style="font-size:var(--fs-lg)">${state.bookmarks.length > 0 ? state.bookmarks.length + ' محفوظة' : 'لا مفضلات بعد'}</div>
+          <div class="bento-desc">انقر مرتين على أي فقرة في المحتوى لحفظها هنا.</div>
+        </div>
+
+        <!-- All Modules -->
+        <div class="bento-cell bento-wide">
+          <div class="bento-eyebrow">الوحدات المعرفية</div>
+          <div class="bento-module-list">
+            ${DATA.modules.map(m => `
+              <div class="bento-module-item" onclick="navigateTo('module','${m.id}')">
+                <span class="bento-module-icon">${m.icon}</span>
+                <span class="bento-module-name">${m.title}</span>
+                <span class="bento-module-count">${m.principleCount} مبادئ · ${m.scenarios.length} سيناريو</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="bento-cell bento-sm">
+          <div class="bento-eyebrow">إجراءات سريعة</div>
+          <div class="bento-module-list">
+            <div class="bento-module-item" onclick="navigateTo('recall')">
+              <span class="bento-module-icon">🔄</span>
+              <span class="bento-module-name">اختبر نفسك</span>
+            </div>
+            <div class="bento-module-item" onclick="navigateTo('scenarios')">
+              <span class="bento-module-icon">🎯</span>
+              <span class="bento-module-name">سيناريوهات <span class="font-en" style="color:var(--accent);font-size:10px;margin-right:4px">${DATA.modules.reduce((a,m) => a + m.scenarios.length, 0)}</span></span>
+            </div>
+            <div class="bento-module-item" onclick="navigateTo('settings')">
+              <span class="bento-module-icon">⚙️</span>
+              <span class="bento-module-name">الإعدادات</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+
+  container.innerHTML = html;
+}
+</script>
+
+
+<script>
+/* ══════════════════════════════════════════
+   [RENDER] — Module Page
+   ══════════════════════════════════════════ */
+function renderModule(container) {
+  const mod = DATA.modules.find(m => m.id === currentModule);
+  if (!mod) { navigateTo('home'); return; }
+
+  let contentHTML = '';
+  if (currentSection === 'principles') {
+    contentHTML = mod.principles.map((p, i) => `
+      <article class="principle-card" id="principle-${i}" ondblclick="bookmarkPrinciple('${mod.id}', ${i})">
+        <div class="principle-header">
+          <span class="principle-number font-en">${String(i + 1).padStart(2, '0')}</span>
+          <div class="principle-titles">
+            <h3 class="principle-name">${p.name} <span class="principle-name-en font-en">· ${p.nameEn}</span></h3>
+            <div class="principle-source">${p.source}</div>
+          </div>
+        </div>
+        <div class="principle-body">
+          <div class="principle-section">
+            <div class="principle-section-label">الشرح</div>
+            <p class="principle-text">${p.explanation}</p>
+          </div>
+          <div class="principle-section">
+            <div class="principle-section-label">مثال واقعي عربي</div>
+            <div class="principle-example">${p.example}</div>
+          </div>
+          <div class="principle-section">
+            <div class="principle-section-label">جملة تطبيقية — قلها كما هي</div>
+            <div class="principle-phrase">"${p.phrase}"</div>
+          </div>
+          <div class="principle-section">
+            <div class="principle-section-label">الخطأ الشائع</div>
+            <div class="principle-warning">${p.mistake}</div>
+          </div>
+          <div class="principle-section">
+            <div class="principle-section-label">يتقاطع مع</div>
+            <div class="principle-connections">
+              ${p.connections.map(c => `<span class="principle-conn-tag">${c}</span>`).join('')}
+            </div>
+          </div>
+        </div>
+      </article>
+    `).join('');
+  } else if (currentSection === 'scenarios') {
+    const state = Store.get();
+    const completedScenarios = (state.completedScenarios && state.completedScenarios[mod.id]) ? state.completedScenarios[mod.id].length : 0;
+    const totalScenarios = mod.scenarios.length;
+    const progressPct = totalScenarios > 0 ? Math.round((completedScenarios / totalScenarios) * 100) : 0;
+    contentHTML = `
+      <div class="scenario-progress">
+        <div class="scenario-progress-label"><span>${completedScenarios}</span> / ${totalScenarios} مكتمل</div>
+        <div class="scenario-progress-bar"><div class="scenario-progress-fill" style="width:${progressPct}%"></div></div>
+      </div>
+      <div class="scenario-container">${renderScenariosContent(mod)}</div>`;
+  } else if (currentSection === 'recall') {
+    contentHTML = `<div class="recall-container">${renderRecallContent(mod)}</div>`;
+  } else if (currentSection === 'cheatsheet') {
+    contentHTML = renderCheatsheetContent(mod);
+  }
+
+  const html = `
+    <div class="page active module-page">
+      <div class="module-hero">
+        <button class="module-back" onclick="navigateTo('home')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          العودة للمكتبة
+        </button>
+        <div class="module-category">${mod.category} · ${mod.titleEn}</div>
+        <h1 class="module-title">${mod.title}</h1>
+        <p class="module-subtitle">${mod.description}</p>
+        <div class="module-meta">
+          <span class="module-meta-item">📖 ${mod.book}</span>
+          <span class="module-meta-item">✍️ ${mod.author}, ${mod.year}</span>
+          <span class="module-meta-item">⏱ ${mod.readTime}</span>
+          <span class="module-meta-item">📊 ${mod.difficulty}</span>
+        </div>
+      </div>
+
+      <nav class="module-sections-nav">
+        <button class="section-tab ${currentSection === 'principles' ? 'active' : ''}" onclick="navigateTo('module','${mod.id}','principles')">المبادئ الأساسية</button>
+        <button class="section-tab ${currentSection === 'scenarios' ? 'active' : ''}" onclick="navigateTo('module','${mod.id}','scenarios')">سيناريوهات تطبيقية</button>
+        <button class="section-tab ${currentSection === 'recall' ? 'active' : ''}" onclick="navigateTo('module','${mod.id}','recall')">اختبر نفسك</button>
+        <button class="section-tab ${currentSection === 'cheatsheet' ? 'active' : ''}" onclick="navigateTo('module','${mod.id}','cheatsheet')">الملخص السريع</button>
+      </nav>
+
+      <div class="module-content">
+        ${contentHTML}
+      </div>
+    </div>`;
+
+  container.innerHTML = html;
+}
+
+function renderScenariosContent(mod) {
+  return mod.scenarios.map((s, i) => `
+    <div class="scenario-card" id="scenario-${i}">
+      <div class="scenario-header">
+        <div class="bento-eyebrow">سيناريو ${i + 1}</div>
+        <p class="scenario-context">${s.context}</p>
+      </div>
+      <div class="scenario-body">
+        <div class="scenario-options">
+          ${s.options.map((opt, j) => `
+            <div class="scenario-opt" onclick="selectScenario(${i}, ${j}, '${opt.level}')" id="sopt-${i}-${j}">
+              <div class="scenario-opt-level" style="color: ${opt.level === 'best' ? 'var(--accent)' : opt.level === 'good' ? '#22C55E' : '#EF4444'}">${opt.label}</div>
+              <div class="scenario-opt-text">${opt.text}</div>
+            </div>
+          `).join('')}
+        </div>
+        <div class="scenario-explanation" id="sexp-${i}">
+          <div class="scenario-explanation-title">لماذا؟ · المبدأ: ${s.principle}</div>
+          <div class="scenario-explanation-text">${s.explanation}</div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderRecallContent(mod) {
+  return `
+    <div class="recall-stats">
+      <div class="recall-stat">
+        <div class="recall-stat-num font-en" id="recall-correct">0</div>
+        <div class="recall-stat-label">صحيحة</div>
+      </div>
+      <div class="recall-stat">
+        <div class="recall-stat-num font-en" id="recall-total">${mod.recall.length}</div>
+        <div class="recall-stat-label">إجمالي</div>
+      </div>
+      <div class="recall-stat">
+        <div class="recall-stat-num font-en" id="recall-pct">0%</div>
+        <div class="recall-stat-label">الدقة</div>
+      </div>
+    </div>
+
+    <div class="flashcard-stack">
+      <div class="flashcard" id="flashcard" onclick="flipCard()">
+        <div class="flashcard-face flashcard-front">
+          <div class="flashcard-question" id="fc-question">${mod.recall[0].q}</div>
+          <div class="flashcard-hint">انقر لكشف الإجابة</div>
+        </div>
+        <div class="flashcard-face flashcard-back">
+          <div class="flashcard-answer" id="fc-answer">${mod.recall[0].a}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="recall-actions">
+      <button class="recall-btn dont-know" onclick="recallAnswer(false)">لا أعرف ✗</button>
+      <button class="recall-btn know" onclick="recallAnswer(true)">أعرف ✓</button>
+    </div>
+  `;
+}
+
+function renderCheatsheetContent(mod) {
+  return `
+    <div class="cheatsheet">
+      <h2 class="cheatsheet-title">ملخص سريع — ${mod.title}</h2>
+      <ul class="cheatsheet-list">
+        ${mod.cheatsheet.points.map(p => `<li>${p}</li>`).join('')}
+      </ul>
+      <div class="golden-rule">
+        <div class="golden-rule-label">القاعدة الذهبية</div>
+        <div class="golden-rule-text">${mod.cheatsheet.golden}</div>
+      </div>
+    </div>
+  `;
+}
+</script>
+
+
+<script>
+/* ══════════════════════════════════════════
+   [RENDER] — Standalone Pages
+   ══════════════════════════════════════════ */
+function renderScenarios(container) {
+  const mod = DATA.modules.find(m => m.id === (currentModule || 'influence'));
+  if (!mod) { navigateTo('home'); return; }
+  container.innerHTML = `
+    <div class="page active module-page">
+      <div class="module-hero">
+        <button class="module-back" onclick="navigateTo('home')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          العودة للمكتبة
+        </button>
+        <div class="module-category">سيناريوهات تطبيقية</div>
+        <h1 class="module-title">اختبر حكمك — ${mod.title}</h1>
+        <p class="module-subtitle">مواقف واقعية من بيئة العمل العربية. اختر ردّك، ثم اكتشف ما كان سيفعله الخبير.</p>
+      </div>
+      <div class="scenario-container">${renderScenariosContent(mod)}</div>
+    </div>`;
+}
+
+function renderRecall(container) {
+  const mod = DATA.modules.find(m => m.id === (currentModule || 'influence'));
+  if (!mod) { navigateTo('home'); return; }
+  container.innerHTML = `
+    <div class="page active module-page">
+      <div class="module-hero">
+        <button class="module-back" onclick="navigateTo('home')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          العودة للمكتبة
+        </button>
+        <div class="module-category">اختبر نفسك · Active Recall</div>
+        <h1 class="module-title">بطاقات المراجعة — ${mod.title}</h1>
+        <p class="module-subtitle">انقر على البطاقة لكشف الإجابة، ثم حدد إن كنت تعرفها أم لا.</p>
+      </div>
+      <div class="recall-container">${renderRecallContent(mod)}</div>
+    </div>`;
+  recallState.index = 0;
+  recallState.correct = 0;
+  recallState.total = mod.recall.length;
+}
+
+function renderCheatsheet(container) {
+  const mod = DATA.modules.find(m => m.id === (currentModule || 'influence'));
+  if (!mod) { navigateTo('home'); return; }
+  container.innerHTML = `
+    <div class="page active module-page">
+      <div class="module-hero">
+        <button class="module-back" onclick="navigateTo('module','${mod.id}')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          العودة للوحدة
+        </button>
+        <div class="module-category">ملخص الملخص</div>
+        <h1 class="module-title">Cheat Sheet — ${mod.title}</h1>
+      </div>
+      ${renderCheatsheetContent(mod)}
+    </div>`;
+}
+
+function renderBookmarks(container) {
+  const state = Store.get();
+  const bookmarks = state.bookmarks;
+
+  container.innerHTML = `
+    <div class="page active module-page">
+      <div class="module-hero">
+        <button class="module-back" onclick="navigateTo('home')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          العودة للمكتبة
+        </button>
+        <div class="module-category">المحفوظات</div>
+        <h1 class="module-title">مفضلاتي</h1>
+        <p class="module-subtitle">كل ما حفظته بالنقر المزدوج على المحتوى. ${bookmarks.length} عنصر محفوظ.</p>
+      </div>
+      <div class="bookmarks-list">
+        ${bookmarks.length === 0 ? '<p style="color:var(--text-muted);text-align:center;padding:var(--space-2xl)">لم تحفظ شيئاً بعد. انقر مرتين على أي مبدأ لحفظه هنا.</p>' :
+          bookmarks.map(b => `
+            <div class="bookmark-item">
+              <div style="flex:1">
+                <div class="bookmark-source">${b.source}</div>
+                <div class="bookmark-text">${b.text}</div>
+              </div>
+              <button class="bookmark-remove" onclick="removeBookmark('${b.id}')">✕</button>
+            </div>
+          `).join('')}
+      </div>
+    </div>`;
+}
+
+function renderSettings(container) {
+  const state = Store.get();
+  container.innerHTML = `
+    <div class="page active module-page">
+      <div class="module-hero">
+        <button class="module-back" onclick="navigateTo('home')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          العودة للمكتبة
+        </button>
+        <div class="module-category">الإعدادات</div>
+        <h1 class="module-title">التخصيص والبيانات</h1>
+      </div>
+      <div class="settings-container">
+        <div class="settings-section">
+          <h3 class="settings-section-title">المظهر</h3>
+          <div class="settings-row">
+            <span class="settings-label">الوضع الداكن</span>
+            <div class="toggle ${state.theme === 'dark' ? 'on' : ''}" onclick="toggleTheme()"></div>
+          </div>
+        </div>
+        <div class="settings-section">
+          <h3 class="settings-section-title">البيانات</h3>
+          <div class="settings-row">
+            <span class="settings-label">تصدير البيانات (JSON)</span>
+            <button class="settings-btn" onclick="exportData()">تصدير</button>
+          </div>
+          <div class="settings-row">
+            <span class="settings-label">استيراد البيانات</span>
+            <button class="settings-btn" onclick="importData()">استيراد</button>
+          </div>
+          <div class="settings-row">
+            <span class="settings-label">مسح جميع البيانات</span>
+            <button class="settings-btn danger" onclick="resetData()">مسح</button>
+          </div>
+        </div>
+        <div class="settings-section">
+          <h3 class="settings-section-title">الإحصائيات</h3>
+          <div class="settings-row">
+            <span class="settings-label">الوحدات المكتملة</span>
+            <span class="font-en" style="color:var(--accent)">${state.completedModules.length} / ${DATA.modules.length}</span>
+          </div>
+          <div class="settings-row">
+            <span class="settings-label">المفضلات المحفوظة</span>
+            <span class="font-en" style="color:var(--accent)">${state.bookmarks.length}</span>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+</script>
+
+
+<script>
+/* ══════════════════════════════════════════
+   [EVENTS] — Event Handlers & Interactions
+   ══════════════════════════════════════════ */
+
+/* --- Scenario Selection --- */
+function selectScenario(scenarioIdx, optIdx, level) {
+  const mod = DATA.modules.find(m => m.id === currentModule);
+  if (!mod) return;
+
+  const scenario = mod.scenarios[scenarioIdx];
+  scenario.options.forEach((opt, j) => {
+    const el = document.getElementById(`sopt-${scenarioIdx}-${j}`);
+    if (!el) return;
+    el.classList.add('revealed');
+    el.style.pointerEvents = 'none';
+    if (opt.level === 'best') el.classList.add('selected-best');
+    else if (opt.level === 'good') el.classList.add('selected-good');
+    else el.classList.add('selected-bad');
+  });
+
+  const explanation = document.getElementById(`sexp-${scenarioIdx}`);
+  if (explanation) explanation.classList.add('show');
+
+  // Track completed scenarios for progress
+  const state = Store.get();
+  if (!state.completedScenarios) state.completedScenarios = {};
+  if (!state.completedScenarios[currentModule]) state.completedScenarios[currentModule] = [];
+  if (!state.completedScenarios[currentModule].includes(scenarioIdx)) {
+    state.completedScenarios[currentModule].push(scenarioIdx);
+    Store.set(state);
+    // Update progress bar
+    const totalScenarios = mod.scenarios.length;
+    const completedCount = state.completedScenarios[currentModule].length;
+    const pct = Math.round((completedCount / totalScenarios) * 100);
+    const fill = document.querySelector('.scenario-progress-fill');
+    const label = document.querySelector('.scenario-progress-label');
+    if (fill) fill.style.width = pct + '%';
+    if (label) label.innerHTML = `<span>${completedCount}</span> / ${totalScenarios} مكتمل`;
+  }
+}
+
+/* --- Flashcard / Recall System --- */
+const recallState = { index: 0, correct: 0, total: 0, flipped: false };
+
+function flipCard() {
+  const card = document.getElementById('flashcard');
+  if (!card) return;
+  recallState.flipped = !recallState.flipped;
+  card.classList.toggle('flipped');
+}
+
+function recallAnswer(knew) {
+  if (!recallState.flipped) { flipCard(); return; }
+
+  const mod = DATA.modules.find(m => m.id === (currentModule || 'influence'));
+  if (!mod) return;
+
+  if (knew) recallState.correct++;
+  recallState.index++;
+
+  // Update stats
+  const correctEl = document.getElementById('recall-correct');
+  const pctEl = document.getElementById('recall-pct');
+  if (correctEl) correctEl.textContent = recallState.correct;
+  if (pctEl) pctEl.textContent = Math.round((recallState.correct / recallState.index) * 100) + '%';
+
+  // Next card or finish
+  if (recallState.index >= mod.recall.length) {
+    Store.saveRecall(mod.id, recallState.correct, mod.recall.length);
+    const stack = document.querySelector('.flashcard-stack');
+    if (stack) {
+      stack.innerHTML = `
+        <div style="text-align:center;padding:var(--space-2xl);">
+          <div style="font-size:var(--fs-2xl);margin-bottom:var(--space-md);">🎉</div>
+          <h3 style="margin-bottom:var(--space-sm);">انتهيت!</h3>
+          <p style="color:var(--text-secondary);">النتيجة: ${recallState.correct} / ${mod.recall.length} (${Math.round((recallState.correct / mod.recall.length) * 100)}%)</p>
+          <button class="recall-btn" onclick="navigateTo('recall')" style="margin-top:var(--space-lg);">أعد المحاولة</button>
+        </div>`;
+    }
+    const actions = document.querySelector('.recall-actions');
+    if (actions) actions.style.display = 'none';
+    return;
+  }
+
+  // Show next card
+  recallState.flipped = false;
+  const card = document.getElementById('flashcard');
+  if (card) card.classList.remove('flipped');
+
+  const q = document.getElementById('fc-question');
+  const a = document.getElementById('fc-answer');
+  if (q) q.textContent = mod.recall[recallState.index].q;
+  if (a) a.textContent = mod.recall[recallState.index].a;
+}
+
+/* --- Theme Toggle --- */
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme') || 'dark';
+  const next = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  document.body.setAttribute('data-theme', next);
+  Store.update('theme', next);
+}
+
+/* --- Bookmarks --- */
+function bookmarkPrinciple(moduleId, principleIdx) {
+  const mod = DATA.modules.find(m => m.id === moduleId);
+  if (!mod) return;
+  const p = mod.principles[principleIdx];
+  const bm = {
+    id: `${moduleId}-${principleIdx}`,
+    source: `${mod.title} — ${p.name}`,
+    text: p.explanation.substring(0, 120) + '...',
+    date: Date.now()
+  };
+  Store.addBookmark(bm);
+  // Visual feedback
+  const el = document.getElementById(`principle-${principleIdx}`);
+  if (el) {
+    el.style.borderColor = 'var(--accent-border)';
+    setTimeout(() => { el.style.borderColor = ''; }, 1500);
+  }
+}
+
+function removeBookmark(id) {
+  Store.removeBookmark(id);
+  renderBookmarks(document.getElementById('app-main'));
+}
+
+/* --- Command Palette --- */
+function openCmdPalette() {
+  const palette = document.getElementById('cmd-palette');
+  palette.classList.add('open');
+  const input = document.getElementById('cmd-input');
+  input.value = '';
+  input.focus();
+  renderCmdResults('');
+}
+
+function closeCmdPalette() {
+  document.getElementById('cmd-palette').classList.remove('open');
+}
+
+function renderCmdResults(query) {
+  const results = document.getElementById('cmd-results');
+  let items = [];
+
+  // Navigation items
+  items.push({ icon: '🏠', title: 'الرئيسية', sub: 'العودة للمكتبة', action: () => navigateTo('home') });
+  items.push({ icon: '⚙️', title: 'الإعدادات', sub: 'التخصيص والبيانات', action: () => navigateTo('settings') });
+  items.push({ icon: '🔖', title: 'المفضلات', sub: 'العناصر المحفوظة', action: () => navigateTo('bookmarks') });
+
+  // Modules
+  DATA.modules.forEach(m => {
+    items.push({ icon: m.icon, title: m.title, sub: `${m.author} — ${m.principleCount} مبادئ`, action: () => navigateTo('module', m.id) });
+    // Principles
+    m.principles.forEach(p => {
+      items.push({ icon: '📌', title: p.name, sub: `${m.title} · ${p.nameEn}`, action: () => { navigateTo('module', m.id, 'principles'); } });
+    });
+  });
+
+  // Filter
+  if (query) {
+    const q = query.toLowerCase();
+    items = items.filter(item =>
+      item.title.toLowerCase().includes(q) ||
+      item.sub.toLowerCase().includes(q)
+    );
+  }
+
+  results.innerHTML = items.slice(0, 8).map((item, i) => `
+    <div class="cmd-item ${i === 0 ? 'selected' : ''}" onclick="cmdSelect(${i})">
+      <div class="cmd-item-icon">${item.icon}</div>
+      <div class="cmd-item-text">
+        <div class="cmd-item-title">${item.title}</div>
+        <div class="cmd-item-sub">${item.sub}</div>
+      </div>
+    </div>
+  `).join('');
+
+  // Store actions for keyboard nav
+  window._cmdItems = items.slice(0, 8);
+  window._cmdSelected = 0;
+}
+
+function cmdSelect(idx) {
+  if (window._cmdItems && window._cmdItems[idx]) {
+    window._cmdItems[idx].action();
+    closeCmdPalette();
+  }
+}
+
+/* --- Navigation helpers --- */
+function updateNavDots() {
+  const dots = document.getElementById('nav-dots');
+  const pages = ['home', 'module', 'scenarios', 'recall', 'settings'];
+  dots.innerHTML = pages.map(p =>
+    `<div class="nav-dot ${currentPage === p ? 'active' : ''}" onclick="navigateTo('${p}')"></div>`
+  ).join('');
+}
+
+function updateNavTitle() {
+  const title = document.getElementById('nav-page-title');
+  const titles = {
+    home: 'المكتبة الشخصية',
+    module: DATA.modules.find(m => m.id === currentModule)?.title || '',
+    scenarios: 'سيناريوهات',
+    recall: 'اختبر نفسك',
+    cheatsheet: 'الملخص السريع',
+    bookmarks: 'المفضلات',
+    settings: 'الإعدادات'
+  };
+  title.textContent = titles[currentPage] || '';
+}
+
+/* --- Settings actions --- */
+function exportData() {
+  const data = Store.exportData();
+  const blob = new Blob([data], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'knowledge-os-backup.json';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function importData() {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.json';
+  input.onchange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      if (Store.importData(ev.target.result)) {
+        alert('تم الاستيراد بنجاح');
+        render();
+      } else {
+        alert('خطأ في الملف');
+      }
+    };
+    reader.readAsText(file);
+  };
+  input.click();
+}
+
+function resetData() {
+  if (confirm('هل أنت متأكد؟ سيتم مسح جميع بياناتك.')) {
+    Store.reset();
+    render();
+  }
+}
+</script>
+
+
+<script>
+/* ══════════════════════════════════════════
+   [UTILS] — Helper Functions
+   ══════════════════════════════════════════ */
+
+/* Scroll-based navigation show/hide */
+let lastScrollY = 0;
+let navVisible = false;
+
+function handleScroll() {
+  const scrollY = window.scrollY;
+  const nav = document.getElementById('topnav');
+
+  // Show nav when scrolling up, hide when scrolling down
+  if (scrollY < lastScrollY && scrollY > 100) {
+    if (!navVisible) { nav.classList.add('visible'); navVisible = true; }
+  } else if (scrollY > lastScrollY) {
+    if (navVisible) { nav.classList.remove('visible'); navVisible = false; }
+  }
+
+  // Hide if near top
+  if (scrollY < 50) {
+    nav.classList.remove('visible');
+    navVisible = false;
+  }
+
+  // Reading progress
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = docHeight > 0 ? (scrollY / docHeight) * 100 : 0;
+  document.getElementById('reading-progress').style.width = progress + '%';
+
+  lastScrollY = scrollY;
+}
+
+/* Keyboard shortcuts */
+function handleKeydown(e) {
+  // Cmd/Ctrl + K = Command Palette
+  if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+    e.preventDefault();
+    const palette = document.getElementById('cmd-palette');
+    if (palette.classList.contains('open')) closeCmdPalette();
+    else openCmdPalette();
+  }
+
+  // Escape = close palette
+  if (e.key === 'Escape') {
+    closeCmdPalette();
+  }
+
+  // Arrow navigation in cmd palette
+  if (document.getElementById('cmd-palette').classList.contains('open')) {
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      window._cmdSelected = Math.min((window._cmdSelected || 0) + 1, (window._cmdItems?.length || 1) - 1);
+      highlightCmd();
+    }
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      window._cmdSelected = Math.max((window._cmdSelected || 0) - 1, 0);
+      highlightCmd();
+    }
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      cmdSelect(window._cmdSelected || 0);
+    }
+  }
+}
+
+function highlightCmd() {
+  const items = document.querySelectorAll('.cmd-item');
+  items.forEach((item, i) => {
+    item.classList.toggle('selected', i === window._cmdSelected);
+  });
+}
+
+/* Bento cell hover glow effect */
+function handleBentoHover(e) {
+  const cell = e.currentTarget;
+  const rect = cell.getBoundingClientRect();
+  const x = ((e.clientX - rect.left) / rect.width) * 100;
+  const y = ((e.clientY - rect.top) / rect.height) * 100;
+  cell.style.setProperty('--mouse-x', x + '%');
+  cell.style.setProperty('--mouse-y', y + '%');
+}
+
+/* ══════════════════════════════════════════
+   [INIT] — Bootstrap
+   ══════════════════════════════════════════ */
+(function init() {
+  // Load saved theme
+  const state = Store.get();
+  const theme = state.theme || 'dark';
+  document.documentElement.setAttribute('data-theme', theme);
+  document.body.setAttribute('data-theme', theme);
+
+  // Render initial page
+  const lastVisited = state.lastVisited;
+  if (lastVisited) {
+    currentPage = lastVisited.page || 'home';
+    currentModule = lastVisited.moduleId || null;
+    currentSection = lastVisited.section || 'principles';
+  }
+  render();
+
+  // Event listeners
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  document.addEventListener('keydown', handleKeydown);
+
+  // Command palette search input
+  document.getElementById('cmd-input').addEventListener('input', (e) => {
+    renderCmdResults(e.target.value);
+  });
+
+  // Bento hover effect delegation
+  document.addEventListener('mousemove', (e) => {
+    const cell = e.target.closest('.bento-cell');
+    if (cell) handleBentoHover(e);
+  });
+})();
+</script>
+</body>
+</html>
