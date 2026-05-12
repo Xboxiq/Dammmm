@@ -1,405 +1,473 @@
-# تحليل احترافي شامل + بروميت تطويري خارق
-## منصة التدريب الاحترافية العربية — v12
+# تحليل المنصة + بروميت تطويري خارق V2.0
+## مرجع علمي شخصي — ليس منصة تدريب جماعية
 
 ---
 
-## القسم الأول: التحليل الاحترافي الشامل
+## ⚡ الفلسفة الجديدة
 
-### ✅ نقاط القوة الحالية
+> هذه **ليست** منصة تدريب لموظفين.  
+> هذا **مرجع معرفي شخصي** يعيش على جهازك — يُلخّص لك الكتب، يعرض الدراسات بأسلوب بصري مبتكر، ويجعل المعرفة المعقدة سهلة الهضم.
 
-| # | النقطة | التفصيل |
-|---|--------|---------|
-| 1 | تصميم بصري متقدم | Neo-Glassmorphism + CSS Variables + Gradients + Ambient animations |
-| 2 | دعم RTL أصيل | مبني من الأساس للعربية مع `dir="rtl"` |
-| 3 | محتوى تدريبي غني | 81 سيناريو تفاعلي + SPIN Framework + Cialdini + دوافع نفسية |
-| 4 | نظام Gamification | نقاط + شارات + streak + مستويات + تقارير أداء |
-| 5 | تفاعلية عالية | Accordion + Quiz Engine + Scenario Simulation + Active Recall |
-| 6 | تنوع الوحدات | 11 وحدة تدريبية (كول سنتر، مبيعات، سوشيال، تفاوض، برمجة، محاسبة...) |
-| 7 | Keyboard Shortcuts | Ctrl+1-5 للتنقل السريع |
-| 8 | Dark Theme متقن | مع تدرجات لونية وتوهجات احترافية |
-| 9 | نظام إشعارات ذكي | Smart Notifications + Daily Quotes |
-| 10 | حالة محفوظة | localStorage لحفظ التقدم |
+**الهدف:** أن تفتح ملف HTML واحد على جهازك وتجد فيه:
+- خلاصات كتب مبيعات/تفاوض/نفسيات بأسلوب مرئي سلس
+- سيناريوهات تطبيقية تختبر فهمك
+- تصميم يُحفّز القراءة — مثل قراءة مجلة فاخرة مو textbook جاف
 
 ---
 
-### ❌ نقاط الضعف والفجوات الحرجة
+## 📊 تحليل الملف الحالي (وفق الفلسفة الجديدة)
 
-| # | الفجوة | الخطورة | التفصيل |
-|---|--------|---------|---------|
-| 1 | ملف واحد ضخم (15,653 سطر) | 🔴 حرجة | CSS + HTML + JS في ملف واحد = صيانة مستحيلة |
-| 2 | لا يوجد AI حقيقي | 🔴 حرجة | السيناريوهات ثابتة/مكتوبة مسبقاً — لا يوجد AI يحاور المتدرب |
-| 3 | لا Backend | 🔴 حرجة | لا قاعدة بيانات، لا مصادقة، لا حفظ سحابي |
-| 4 | لا PWA/Mobile | 🟡 عالية | غير قابل للتثبيت كتطبيق، لا يعمل offline بالكامل |
-| 5 | لا Analytics حقيقي | 🟡 عالية | لا تتبع سلوكي، لا Heatmaps، لا تحليل أداء متقدم |
-| 6 | Accessibility ناقص | 🟡 عالية | ARIA roles محدودة، لا Screen Reader support كامل |
-| 7 | لا نظام أدوار | 🟡 عالية | لا مدرب/متدرب/مدير — الكل يرى نفس المحتوى |
-| 8 | لا محادثة تفاعلية | 🟠 متوسطة | Chatbot/Roleplay ثابت وليس ديناميكي |
-| 9 | لا نظام شهادات | 🟠 متوسطة | لا PDF Certificate بعد إتمام الوحدة |
-| 10 | لا تكامل خارجي | 🟠 متوسطة | لا Zoom/Teams، لا Calendar sync، لا Slack |
-| 11 | لا نظام تأليف محتوى | 🟠 متوسطة | المحتوى hardcoded — لا CMS لإضافة سيناريوهات جديدة |
-| 12 | لا Leaderboard اجتماعي | 🟢 منخفضة | المنافسة فردية فقط، لا فرق/تحديات جماعية |
+### ✅ ما ينفع نحتفظ فيه
 
----
+| # | العنصر | ليش ينفع |
+|---|--------|----------|
+| 1 | المحتوى النفسي (Cialdini, Kahneman) | خلاصات كتب ممتازة ومطبّقة |
+| 2 | سيناريوهات الاعتراضات العشرة | تطبيق عملي لمفاهيم البيع |
+| 3 | SPIN Framework | ملخص بصري لكتاب Neil Rackham |
+| 4 | دورة البيع السبعية | Framework واضح ومنظم |
+| 5 | الدوافع النفسية الخفية | Loss Aversion + Social Proof + Anchoring |
+| 6 | الثيم الداكن والتصميم البصري | مريح للقراءة الطويلة |
 
-### 🎯 التوصيات التطويرية (مرتبة بالأولوية)
+### ❌ ما لازم يتغير/ينحذف
 
-1. **فصل الهيكلية** → Components/Modules (React أو Vue أو حتى Web Components)
-2. **إضافة AI Roleplay Engine** → محادثة حقيقية مع AI يلعب دور العميل
-3. **نظام Backend** → Authentication + Database + API
-4. **تحويل لـ PWA** → Service Worker + Offline + Install prompt
-5. **نظام أدوار** → Admin Panel + Trainer + Trainee
-6. **Analytics Dashboard** → تتبع سلوكي + تقارير PDF + KPIs
-7. **نظام شهادات** → Auto-generated certificates
-8. **AI Adaptive Learning** → مسار تدريبي يتكيف مع مستوى المتدرب
-9. **Voice Integration** → تدريب صوتي على المكالمات
-10. **Real-time Multiplayer** → تحديات جماعية بين المتدربين
+| # | العنصر | ليش |
+|---|--------|-----|
+| 1 | كل ما يخص "متدربين/فرق/مدير" | مو الهدف — استخدام ذاتي |
+| 2 | Leaderboard / Team challenges | لا يوجد فريق |
+| 3 | نظام أدوار (Admin/Trainer/Trainee) | مستخدم واحد فقط |
+| 4 | Push notifications / PWA | ملف محلي على الجهاز |
+| 5 | Backend / Database / Auth | لا حاجة — localStorage كافي |
+| 6 | Activity Feed "ماذا يفعل زملاؤك" | لا زملاء |
+| 7 | Battle Mode / Multiplayer | فردي 100% |
+| 8 | Voice/Call simulation | تعقيد بلا فائدة لملف محلي |
+
+### 🔴 ما يحتاج تطوير جذري
+
+| # | العنصر | التطوير المطلوب |
+|---|--------|----------------|
+| 1 | عرض المحتوى | من "كروت سيناريو" → **صفحات مجلة معرفية** بتصميم editorial |
+| 2 | التنقل | من sidebar تقليدي → **تجربة تصفح immersive** |
+| 3 | الاختبارات | من quiz عادي → **Active Recall + Spaced Repetition** محلي |
+| 4 | المحتوى | من ثابت → **نظام بيانات** يسهل إضافة كتب/خلاصات جديدة |
+| 5 | التصميم | من Neo-Glass معتاد → **تصميم editorial فريد** لا يشبه أي AI output |
 
 ---
 ---
 
-## القسم الثاني: البروميت الخارق (Reverse-Engineered Mega Prompt)
+## 🔥 البروميت الخارق V2.0 — Personal Knowledge System
 
-> **ملاحظة:** هذا البروميت مصمم ليستخرج أقصى قدرة من أي نموذج AI مدفوع (Claude, GPT-4, Gemini). انسخه واستخدمه مباشرة.
+> انسخ كل شيء تحت وألصقه في أي نموذج AI قوي (Claude Opus, GPT-4, Gemini Ultra)
 
 ---
 
 
 ```
-═══════════════════════════════════════════════════════════════════
-                    🔥 MEGA PROMPT — V1.0 🔥
-     بروميت هندسة عكسية متقدم لمنصة تدريب عربية خارقة
-═══════════════════════════════════════════════════════════════════
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║          🧬 PERSONAL KNOWLEDGE SYSTEM — MEGA PROMPT V2.0 🧬                ║
+║                                                                              ║
+║     بروميت لبناء مرجع معرفي شخصي بتصميم UI خارق                           ║
+║     مُصمم لاستخراج أقصى عمق من أي نموذج AI منافس                          ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
 
-[SYSTEM ROLE]
-أنت مهندس برمجيات أول (Principal Engineer) بخبرة 18 سنة في:
-- بناء منصات LMS/Training على مستوى Enterprise
-- هندسة الواجهات التفاعلية (Interactive UI Engineering)
-- علم النفس السلوكي التطبيقي (Behavioral Psychology in UX)
-- Gamification Architecture المتقدمة
-- تصميم أنظمة عربية RTL من الصفر
-- AI-Powered Adaptive Learning Systems
+══════════════════════════════════════════
+[IDENTITY — من أنت]
+══════════════════════════════════════════
 
-أنت لا تكتب كود عادي. أنت تبني أنظمة تدريبية تُغيّر سلوك البشر.
-مرجعيتك: Duolingo + Coursera + Salesforce Trailhead + خان أكاديمي + Articulate Rise — لكن بهوية عربية أصيلة وتقنية تفوقهم.
+أنت ثلاثة أشخاص في واحد:
 
-═══════════════════════════════════════════════════════════════════
+① مصمم UI/UX بخبرة 15 سنة عمل في:
+   - Apple Design Team (Human Interface Guidelines)
+   - Stripe's editorial design system
+   - Bloomberg Terminal redesign
+   - Notion's content-first approach
+   أنت تُصمم واجهات لا تُشبه أي template. كل pixel له سبب.
+   مرجعياتك: Rauno Freiberg, Paco Coursey, Linear App, Raycast, Arc Browser.
+   أنت تكره: Bootstrap look, Material Design المُقلَّد, أي شيء يبدو "AI-generated".
 
-[CONTEXT — المشروع الحالي]
+② باحث في علم النفس التطبيقي والسلوك البشري:
+   - قرأت وحللت 200+ كتاب في: المبيعات، التفاوض، الإقناع، القيادة، علم الأعصاب
+   - تستطيع تلخيص أي كتاب في "خلاصة عملية" من 5 صفحات بأسلوب سلس وعميق
+   - تربط كل مفهوم بتطبيق واقعي من السوق العربي
+   - لا تكتب academic — تكتب بأسلوب "المرشد الذكي" الذي يُبسّط دون أن يُسطّح
 
-لديّ منصة تدريب احترافية عربية (HTML/CSS/JS) تحتوي على:
-• 11 وحدة تدريبية (كول سنتر، مبيعات ميدانية، سوشيال ميديا، مختبر سيناريوهات، دوافع نفسية، ذكاء عاطفي، تفاوض وإقناع، خدمة عملاء، برمجة، محاسبة)
-• 81 سيناريو تفاعلي بنظام اختيارات + نقاط + شارات
-• تصميم Neo-Glassmorphism مع Dark Theme
-• نظام Gamification (نقاط، streak، badges، ranks)
-• محتوى نفسي متقدم (Cialdini، Kahneman، SPIN Selling)
-• الملف الحالي: 15,653 سطر في ملف HTML واحد
+③ مهندس Frontend يكتب كود نظيف:
+   - Vanilla JS فقط (لا frameworks)
+   - CSS architecture متقدمة (Custom Properties, Container Queries, View Transitions)
+   - Semantic HTML
+   - Performance-first mindset
+   - الكود يعمل محلياً بدون server — ملف HTML واحد يُفتح بالمتصفح
 
-═══════════════════════════════════════════════════════════════════
+══════════════════════════════════════════
+[CONTEXT — ما هو المشروع]
+══════════════════════════════════════════
 
-[MISSION — المهمة]
+أبني لنفسي "مرجع معرفي شخصي" — ملف HTML واحد أفتحه على جهازي:
 
-أعد بناء هذه المنصة من الصفر كـ ملف HTML واحد متقدم (Single-File Application) لكن بمستوى هندسي خارق يشمل التالي:
+🎯 الغرض:
+- خلاصات كتب مُنظمة (مبيعات، تفاوض، علم نفس، قيادة، إقناع)
+- كل خلاصة = صفحة بصرية سلسة فيها: المبدأ + الشرح + أمثلة + تطبيق عربي
+- سيناريوهات تطبيقية أختبر فيها فهمي (اختيارات + تقييم)
+- Active Recall (أسئلة تُظهر الجواب بالنقر)
+- تتبع تقدمي الشخصي (localStorage)
+- لا متدربين، لا فريق، لا backend — أنا وبس
 
-═══════════════════════════════════════════════════════════════════
+📐 المحتوى الحالي اللي أريد تطويره:
+- 11 وحدة معرفية (كول سنتر، مبيعات، سوشيال، تفاوض، دوافع نفسية، ذكاء عاطفي، خدمة عملاء، برمجة، محاسبة)
+- 81 سيناريو تفاعلي
+- محتوى نفسي (Cialdini, Kahneman, SPIN, Ben Franklin Effect...)
+- الملف الحالي: 15,653 سطر HTML
 
-[REQUIREMENTS — المتطلبات الإلزامية]
+══════════════════════════════════════════
+[DESIGN PHILOSOPHY — فلسفة التصميم]
+══════════════════════════════════════════
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🏗️ ARCHITECTURE (الهيكلية)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⛔ ما لا أريده (ممنوع):
+- تصميم Dashboard تقليدي (cards + stats + sidebar) ← كل AI يسوي كذا
+- Material Design أو Bootstrap look
+- ألوان صارخة بدون هرمية
+- نصوص كثيرة بدون تنفّس بصري
+- تصميم "admin panel" أو "LMS"
+- أي شيء يبدو أن AI سوّاه بثانيتين
 
-1. **Component-Based SPA Architecture** داخل ملف واحد:
-   - Router يدير الصفحات بـ Hash-based navigation
-   - State Manager مركزي (Reactive Store pattern)
-   - Event Bus للتواصل بين المكونات
-   - Lazy rendering — فقط الصفحة المرئية تُحمّل في DOM
-   - Template Engine بسيط (template literals + diffing)
+✅ ما أريده (الرؤية):
+- تصميم **Editorial** — مثل مجلة Monocle أو Bloomberg Businessweek الرقمية
+- **Reading-first**: المحتوى هو البطل، الـ UI يخدمه بصمت
+- **Whitespace كسلاح**: مسافات واسعة، تنفّس بصري، لا ازدحام
+- **Typography كفن**: hierarchies واضحة، font pairing مدروس (عربي + لاتيني)
+- **Color restrained**: لون واحد accent فقط + درجات رمادية متقنة
+- **Interaction subtle**: حركات خفيفة هادفة — لا carnival من الأنيميشن
+- **Navigation invisible**: التنقل لا يأخذ مساحة — يظهر عند الحاجة فقط
+- **Dark mode افتراضي** مع Light mode أنيق (ليس مجرد invert)
+- كل صفحة تبدو مختلفة عن الأخرى — ليست template مكرر
+- الإلهام: Linear.app + Raycast + Stripe Docs + Apple Developer Docs + read.cv
 
-2. **Data Layer منفصل تماماً عن UI:**
-   - كل المحتوى التدريبي في كائنات JavaScript منظمة
-   - Schema واضح لكل نوع محتوى (Scenario, Quiz, Module, Badge)
-   - Import/Export JSON capability
-   - Versioning للمحتوى
+══════════════════════════════════════════
+[CONTENT ARCHITECTURE — هيكلة المحتوى]
+══════════════════════════════════════════
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🎨 DESIGN SYSTEM (نظام التصميم)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+كل "وحدة معرفية" هي في الحقيقة **كتاب مُلخّص** معروض بصرياً:
 
-3. **Design Token System كامل:**
-   - 3 ثيمات: Obsidian Dark (الحالي) + Arctic Light + AMOLED Black
-   - Motion Design System (easing curves, durations, choreography)
-   - Spacing Scale (4px base unit)
-   - Typography Scale (modular scale 1.25)
-   - Color System: Primary + Secondary + Semantic + Surface levels
-   - الانتقال بين الثيمات بـ smooth animation (لا instant)
+┌─────────────────────────────────────────┐
+│  📖 وحدة المعرفة = Knowledge Module     │
+├─────────────────────────────────────────┤
+│                                         │
+│  ① OVERVIEW (نظرة سريعة)               │
+│     - عنوان الكتاب/المجال               │
+│     - المؤلف + السنة                    │
+│     - "لماذا هذا مهم؟" في 2 سطر        │
+│     - Reading time تقديري               │
+│     - Difficulty level (مبتدئ/متوسط/متقدم)│
+│                                         │
+│  ② KEY PRINCIPLES (المبادئ الأساسية)     │
+│     - 5-8 مبادئ لكل وحدة               │
+│     - كل مبدأ: عنوان + شرح 3 أسطر      │
+│     - مثال واقعي عربي لكل مبدأ          │
+│     - جملة تطبيقية "قلها كما هي"        │
+│     - مصدر علمي (دراسة/كتاب/باحث)      │
+│                                         │
+│  ③ SCENARIOS (سيناريوهات تطبيقية)       │
+│     - 3-5 مواقف واقعية                  │
+│     - اختيارات (أقل/جيد/ممتاز)         │
+│     - بعد الاختيار: لماذا هذا أفضل؟     │
+│     - "ماذا كان سيفعل الخبير"          │
+│     - المبدأ النفسي خلف كل اختيار       │
+│                                         │
+│  ④ ACTIVE RECALL (اختبر نفسك)          │
+│     - أسئلة مخفية الإجابة (انقر لكشف)  │
+│     - Flashcard style                   │
+│     - تتبع: كم أجبت صح من آخر 10       │
+│                                         │
+│  ⑤ CHEAT SHEET (ملخص الملخص)           │
+│     - صفحة واحدة تُطبع                  │
+│     - كل المبادئ في bullet points       │
+│     - "القاعدة الذهبية" للوحدة          │
+│     - Quick reference table             │
+│                                         │
+│  ⑥ CONNECTIONS (روابط بين المعارف)      │
+│     - "هذا المبدأ يتقاطع مع..."        │
+│     - خريطة ربط بصرية بين الوحدات       │
+│     - "اقرأ أيضاً" suggestions          │
+│                                         │
+└─────────────────────────────────────────┘
 
-4. **UI Components Library داخلية:**
-   - Button variants (primary, ghost, danger, success, loading)
-   - Card variants (glass, solid, bordered, floating)
-   - Modal system (stacked modals + backdrop blur)
-   - Toast/Notification system (queued, auto-dismiss, actionable)
-   - Tooltip system (smart positioning)
-   - Skeleton loaders لكل component
-   - Empty states مع illustrations
+══════════════════════════════════════════
+[UI ARCHITECTURE — هيكلة الواجهة]
+══════════════════════════════════════════
 
-5. **Micro-interactions على مستوى عالمي:**
-   - Magnetic buttons (تنجذب للماوس)
-   - Parallax cards (تميل مع حركة الماوس)
-   - Morphing icons (تتحول بين الحالات)
-   - Page transitions (slide/fade/morph)
-   - Haptic-like feedback (visual pulse on click)
-   - Scroll-triggered animations (Intersection Observer)
-   - Cursor trail effect (optional، يُفعّل من الإعدادات)
+Layout مبتكر — ليس sidebar + content التقليدي:
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🧠 AI & INTELLIGENCE LAYER
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+┌────────────────────────────────────────────────────────┐
+│                                                        │
+│  [TOP] — شريط شفاف يظهر عند Scroll Up فقط            │
+│           يحتوي: اسم الوحدة الحالية + Navigation dots  │
+│           + Theme toggle + Search (Cmd+K style)        │
+│                                                        │
+├────────────────────────────────────────────────────────┤
+│                                                        │
+│  [HOME] — ليست Dashboard تقليدية بل:                  │
+│                                                        │
+│    "مكتبة شخصية" بتصميم Bento Grid غير متماثل:       │
+│     ┌──────────┬──────┬──────────┐                    │
+│     │ خلية     │ خلية │          │                    │
+│     │ كبيرة    │صغيرة │  خلية    │                    │
+│     │ (آخر ما  ├──────┤  متوسطة  │                    │
+│     │  قرأت)   │صغيرة │ (تقدمك)  │                    │
+│     ├──────────┴──────┼──────────┤                    │
+│     │    خلية واسعة   │  خلية    │                    │
+│     │  (اقتباس اليوم) │ (مفضلات) │                    │
+│     └─────────────────┴──────────┘                    │
+│                                                        │
+│  [MODULE PAGE] — ليست list بل:                        │
+│                                                        │
+│    Magazine-style layout:                              │
+│    - Hero section: عنوان كبير + subtitle + meta       │
+│    - Content flows vertically مع تنوع بصري            │
+│    - Pull quotes (اقتباسات جانبية بارزة)              │
+│    - Inline annotations (ملاحظات على النص)            │
+│    - Progressive disclosure (المحتوى يُكشف تدريجياً)  │
+│    - Sticky section indicators (أين أنت في الصفحة)    │
+│                                                        │
+│  [SCENARIO PAGE]:                                      │
+│    - Chat-like interface لكن بتصميم editorial          │
+│    - الاختيارات تظهر كـ cards أنيقة (لا radio buttons) │
+│    - بعد الاختيار: reveal animation + شرح مُصمم       │
+│    - Progress يظهر كـ subtle line في أعلى الصفحة       │
+│                                                        │
+│  [RECALL PAGE]:                                        │
+│    - بطاقات Flashcard بـ flip animation               │
+│    - Swipe-like interaction (أعرف / لا أعرف)          │
+│    - Stats بسيطة: streak + accuracy %                 │
+│                                                        │
+└────────────────────────────────────────────────────────┘
 
-6. **AI Roleplay Chat Engine:**
-   - محادثة حقيقية بالعربي مع AI يلعب دور العميل/المدير/الزميل
-   - الـ AI يتصرف بناءً على شخصية محددة (عميل غاضب، مدير متردد، زميل سلبي)
-   - نظام تقييم تلقائي للرد (Scoring based on psychology principles)
-   - عرض "تصرف الخبير" بعد كل رد
-   - تكامل مع OpenAI API أو Claude API (مع fallback لوضع offline)
-   - Input field يدعم إرسال بـ Enter + زر إرسال animated
+══════════════════════════════════════════
+[VISUAL SPECIFICATIONS — المواصفات البصرية]
+══════════════════════════════════════════
 
-7. **Adaptive Learning Engine:**
-   - تتبع نقاط الضعف لكل متدرب
-   - اقتراح سيناريوهات بناءً على الأداء السابق
-   - Spaced Repetition (إعادة السيناريوهات الضعيفة بعد فترة)
-   - Difficulty scaling تلقائي
-   - Learning Path Generator (مسار مخصص لكل متدرب)
+🎨 Color Palette (Dark Mode — الأساسي):
+   Background:     #09090B (zinc-950)
+   Surface-1:      #18181B (zinc-900)  
+   Surface-2:      #27272A (zinc-800)
+   Text Primary:   #FAFAFA (zinc-50)
+   Text Secondary: #A1A1AA (zinc-400)
+   Text Muted:     #52525B (zinc-600)
+   Accent:         #22D3EE (cyan-400) — لمسة واحدة فقط
+   Accent Dim:     rgba(34, 211, 238, 0.08)
+   Border:         rgba(255, 255, 255, 0.06)
+   
+   لا أكثر من لون accent واحد. الهرمية تُبنى بالوزن والحجم لا باللون.
 
-8. **Smart Analytics Dashboard:**
-   - Heatmap لأوقات التدريب
-   - Skill Radar Chart (رسم بياني لمهارات المتدرب)
-   - Performance Trend (خط زمني)
-   - Weak Points Identifier
-   - Predicted completion date
-   - Comparison with peers (anonymous)
+🔤 Typography:
+   Arabic:  'IBM Plex Arabic' (أنظف من Cairo، أكثر احترافية)
+            fallback: 'Noto Sans Arabic', system-ui
+   Latin:   'Inter' (للأرقام والمصطلحات الإنجليزية)
+   Mono:    'JetBrains Mono' (للكود والأرقام التقنية)
+   
+   Scale: 11px → 13px → 15px → 18px → 24px → 32px → 48px
+   Line-height: 1.75 للقراءة العربية (أوسع من اللاتيني)
+   Letter-spacing: -0.02em للعناوين الكبيرة
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🎮 GAMIFICATION 2.0 (متقدم)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📐 Spacing: 4px base unit
+   xs: 4px | sm: 8px | md: 16px | lg: 24px | xl: 32px | 2xl: 48px | 3xl: 64px
 
-9. **نظام تقدم متعدد الأبعاد:**
-   - XP System مع Level progression (1-50)
-   - Skill Trees (شجرة مهارات بصرية تفاعلية)
-   - Daily/Weekly Challenges
-   - Achievement System (50+ achievement)
-   - Combo multiplier (ردود صحيحة متتالية = نقاط مضاعفة)
-   - Seasonal Events (تحديات شهرية)
-   - Loot Boxes (مكافآت عشوائية — محتوى تعليمي حصري)
+🔲 Radius:
+   sm: 6px | md: 10px | lg: 16px | xl: 24px | full: 9999px
 
-10. **Social Competition:**
-    - Leaderboard (يومي/أسبوعي/شهري/إجمالي)
-    - Team Challenges (تحدي بين فرق)
-    - Mentor System (متدرب متقدم يساعد مبتدئ)
-    - Profile Cards (بطاقة إنجازات قابلة للمشاركة)
-    - Activity Feed (ماذا يفعل زملاؤك)
+🌊 Motion:
+   Duration: 150ms (micro) | 250ms (standard) | 400ms (emphasis)
+   Easing: cubic-bezier(0.16, 1, 0.3, 1) — "expo-out" لكل شيء
+   Rule: لا animation تتجاوز 400ms. لا bounce. لا overshoot.
+   Reduced motion: @media (prefers-reduced-motion: reduce) يُلغي كل شيء
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-📱 EXPERIENCE & ACCESSIBILITY
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+══════════════════════════════════════════
+[INTERACTION PATTERNS — أنماط التفاعل]
+══════════════════════════════════════════
 
-11. **Progressive Web App:**
-    - Service Worker (offline-first)
-    - Install prompt
-    - Push notifications
-    - Background sync
+① Command Palette (Cmd+K / Ctrl+K):
+   - بحث فوري في كل المحتوى
+   - Navigation سريع لأي وحدة
+   - Actions: تغيير الثيم، تصدير، reset
+   - Fuzzy search يدعم عربي + إنجليزي
 
-12. **Full Accessibility (WCAG 2.1 AA):**
-    - Focus management
-    - Screen reader announcements (aria-live)
-    - Reduced motion support
-    - High contrast mode
-    - Font size adjustment (3 levels)
-    - Keyboard-only navigation complete
+② Scroll-based Progress:
+   - خط رفيع (2px) في أعلى الصفحة يتقدم مع القراءة
+   - عند الوصول لنهاية وحدة: "أتممت القراءة ✓" يُسجّل تلقائياً
 
-13. **Responsive Design Perfection:**
-    - Mobile-first approach
-    - Tablet-optimized layout
-    - Desktop widescreen layout
-    - Foldable device support (fold detection)
-    - Landscape/Portrait optimization
+③ Progressive Disclosure:
+   - المحتوى العميق مخفي بشكل افتراضي
+   - "اقرأ المزيد" / "اعرض الشرح" — بـ smooth expand
+   - الهدف: لا تُرهق العين بكل شيء مرة واحدة
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-📦 CONTENT MODULES (المحتوى)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+④ Inline Annotations:
+   - عند hover على مصطلح → tooltip بالتعريف
+   - عند hover على اسم كتاب → popup صغير بمعلومات الكتاب
+   - كل مصطلح إنجليزي → يُعرض المقابل العربي
 
-14. **كل وحدة تدريبية يجب أن تحتوي:**
-    - Hero section مع إحصائيات الوحدة
-    - Theory section (المفاهيم النظرية — مرئية بشكل جذاب)
-    - Interactive scenarios (3 على الأقل لكل وحدة)
-    - Practice mode (AI Roleplay)
-    - Quiz (10 أسئلة متنوعة)
-    - Cheat Sheet (ملخص سريع قابل للحفظ)
-    - Video placeholder (محاكاة لقسم فيديو)
-    - Certificate section (عند إتمام 80%+)
+⑤ Reading Mode Toggle:
+   - وضع "القراءة المركزة": يُخفي كل شيء ما عدا النص
+   - عرض أقصى: 680px (مثل Medium.com)
+   - يمكن تكبير الخط بخطوة واحدة
 
-15. **أنواع الأسئلة المطلوبة:**
-    - Multiple choice (classic)
-    - Drag & drop (ترتيب الخطوات)
-    - Fill in the blank
-    - True/False with explanation
-    - Scenario-based (سيناريو + اختيارات)
-    - Matching (ربط العمود A بالعمود B)
-    - Timed challenge (إجابة خلال وقت محدد)
+⑥ Bookmark System:
+   - انقر مرتين على أي فقرة = bookmark
+   - صفحة "مفضلاتي" تجمع كل ما حفظته
+   - localStorage
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🔊 AUDIO & VOICE (اختياري لكن مطلوب)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+══════════════════════════════════════════
+[CONTENT REQUIREMENTS — متطلبات المحتوى]
+══════════════════════════════════════════
 
-16. **Voice Training Mode:**
-    - Web Speech API لتحويل الكلام لنص
-    - المتدرب يتحدث ردّه والنظام يُقيّمه
-    - Pronunciation feedback (للسكريبتات)
-    - Call simulation (محاكاة مكالمة حقيقية)
-    - Recording & Playback
+كل مبدأ يُعرض بهذا الشكل:
 
-17. **Sound Design:**
-    - UI sounds (click, success, error, level-up, badge unlock)
-    - Ambient background (optional)
-    - Sound toggle في الإعدادات
+┌─────────────────────────────────────────────────────┐
+│                                                     │
+│  [رقم] — اسم المبدأ بالعربي · English Name        │
+│  المصدر: اسم الكتاب/الباحث، السنة                 │
+│                                                     │
+│  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ │
+│                                                     │
+│  📖 الشرح (3-5 أسطر):                             │
+│  شرح المبدأ بأسلوب سلس — كأنك تشرح لصديق ذكي.    │
+│  لا أكاديمي. لا سطحي. عميق لكن سهل.              │
+│                                                     │
+│  💡 مثال واقعي عربي:                               │
+│  موقف حقيقي من بيئة عمل عربية يُوضح المبدأ.       │
+│                                                     │
+│  🎯 جملة تطبيقية (قلها كما هي):                    │
+│  "الجملة الدقيقة التي تستخدمها في الموقف"         │
+│                                                     │
+│  ⚠️ الخطأ الشائع:                                  │
+│  ما يفعله الناس غلطاً عند تطبيق هذا المبدأ.       │
+│                                                     │
+│  🔗 يتقاطع مع: [مبدأ X] + [مبدأ Y]               │
+│                                                     │
+└─────────────────────────────────────────────────────┘
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-⚙️ SETTINGS & CUSTOMIZATION
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+الكتب/المراجع التي يجب تلخيصها (كحد أدنى):
+- Influence (Cialdini, 1984)
+- Thinking Fast and Slow (Kahneman, 2011)
+- SPIN Selling (Rackham, 1988)
+- Never Split the Difference (Voss, 2016)
+- The Challenger Sale (Dixon & Adamson, 2011)
+- Pre-Suasion (Cialdini, 2016)
+- Emotional Intelligence 2.0 (Bradberry, 2009)
+- How to Win Friends and Influence People (Carnegie, 1936)
+- The Psychology of Selling (Tracy, 2004)
+- Start with Why (Sinek, 2009)
 
-18. **لوحة إعدادات شاملة:**
-    - Theme selection (3 themes)
-    - Font size (small/medium/large)
-    - Animations toggle (on/reduced/off)
-    - Sound toggle
-    - Language (Arabic/English — prepared for i18n)
-    - Notification preferences
-    - Data export (JSON)
-    - Reset progress (with confirmation)
-    - Keyboard shortcuts reference
-    - Display density (compact/comfortable/spacious)
+══════════════════════════════════════════
+[TECHNICAL SPECIFICATIONS]
+══════════════════════════════════════════
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🏆 UNIQUE DIFFERENTIATORS (ما يجعلها خارقة)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Format: ملف HTML واحد يعمل محلياً (file://)
+   - لا fetch لملفات خارجية (ما عدا fonts من Google)
+   - لا server required
+   - يعمل بفتح الملف مباشرة بالمتصفح
 
-19. **"Focus Mode" — وضع التركيز العميق:**
-    - يُخفي كل شيء ما عدا المحتوى الحالي
-    - Timer (Pomodoro technique)
-    - لا إشعارات
-    - تصميم مُبسّط يُقلل التشتت
-    - موسيقى ambient اختيارية
+State: localStorage فقط
+   - حفظ التقدم (أي وحدات قرأتها)
+   - حفظ المفضلات (bookmarks)
+   - حفظ نتائج Active Recall
+   - Export/Import كـ JSON (زر في الإعدادات)
 
-20. **"Mentor Ghost" — شبح المدرب:**
-    - في أي سيناريو، يمكن استدعاء "المدرب الخفي"
-    - يعطي تلميحات تدريجية (Hint 1, 2, 3)
-    - يُظهر ما كان سيفعله الخبير
-    - لا يُعطي الإجابة مباشرة — يُوجّه فقط
+Structure داخل الملف:
+   1. <style> — Design System كامل
+   2. <body> — HTML Semantic (لا div soup)
+   3. <script> — مُنظم بـ blocks:
+      - [STORE]     — State management
+      - [ROUTER]    — Page navigation  
+      - [DATA]      — كل المحتوى (JSON objects)
+      - [RENDER]    — DOM rendering functions
+      - [EVENTS]    — Event handlers
+      - [UTILS]     — Helper functions
+      - [INIT]      — Bootstrap
 
-21. **"Time Machine" — آلة الزمن:**
-    - يمكن إعادة أي سيناريو سابق ورؤية كيف تحسّن أداؤك
-    - مقارنة "أنت قبل شهر" vs "أنت الآن"
-    - Growth visualization بصري
+Performance:
+   - Lazy render (فقط الصفحة المرئية)
+   - CSS containment
+   - requestAnimationFrame للحركات
+   - < 2s First Meaningful Paint
+   - Smooth 60fps
 
-22. **"Battle Mode" — وضع المعركة:**
-    - تحدي مباشر بين متدربين
-    - نفس السيناريو، من يحصل على نقاط أعلى؟
-    - Real-time scoring
-    - Victory celebration animation
+══════════════════════════════════════════
+[OUTPUT INSTRUCTIONS — تعليمات الإخراج]
+══════════════════════════════════════════
 
-23. **"Daily Briefing" — الإحاطة اليومية:**
-    - عند فتح المنصة، يظهر ملخص مخصص:
-      * ماذا أنجزت أمس
-      * ما المطلوب اليوم
-      * نصيحة اليوم
-      * تحدي اليوم
-    - يختفي بعد 5 ثوانٍ أو بالنقر
+ابدأ بهذا الترتيب:
+1. Design System (CSS Variables + Base styles + Components)
+2. الصفحة الرئيسية (المكتبة — Bento Grid)
+3. أول وحدة معرفية كاملة (مع كل المحتوى)
+4. نظام السيناريوهات
+5. نظام Active Recall
+6. صفحة الإعدادات
 
-═══════════════════════════════════════════════════════════════════
+إذا كان الملف طويلاً — قسّمه وقل "اكتب: أكمل" وأنا أكمل.
 
-[STYLE GUIDELINES — إرشادات الأسلوب]
+══════════════════════════════════════════
+[QUALITY STANDARD — معيار الجودة]
+══════════════════════════════════════════
 
-- اللغة: عربية فصحى سلسة مع مصطلحات تقنية إنجليزية عند الحاجة
-- النبرة: احترافية + تحفيزية + ذكية (لا طفولية، لا جافة)
-- التصميم: Futuristic Dark + Clean + Spacious
-- الحركات: Smooth + Purposeful + Non-distracting
-- الأداء: 60fps animations, < 3s initial load
-- الكود: Clean, commented, organized in logical blocks
-- كل section في الكود يبدأ بـ banner comment واضح
+□ التصميم لا يُشبه أي AI output رأيته من قبل
+□ أستطيع فتحه على جهازي بدون internet (ما عدا الخطوط)
+□ المحتوى عميق فعلاً — ليس ملء كلام
+□ كل مبدأ مستند على مصدر حقيقي (كتاب/دراسة)
+□ القراءة ممتعة — مثل تصفح مجلة لا قراءة textbook
+□ الكود نظيف ومُعلّق — أقدر أعدّل عليه لاحقاً
+□ الأنيميشن خفيف وهادف — لا circus
+□ يعمل على Chrome/Firefox/Safari بدون مشاكل
+□ RTL مثالي 100%
+□ Dark mode هو الأساسي وليس afterthought
 
-═══════════════════════════════════════════════════════════════════
+══════════════════════════════════════════
+[DIFFERENTIATOR — ما يجعل هذا مختلف]
+══════════════════════════════════════════
 
-[OUTPUT FORMAT — شكل الإخراج]
+هذا ليس "منصة تدريب".
+هذا "مكتبة ذكية شخصية" — Personal Knowledge OS.
 
-أريد الملف كـ HTML واحد كامل يتضمن:
-1. <head> — meta, fonts, CSS variables, full stylesheet
-2. <body> — semantic HTML structure
-3. <script> — في النهاية، مُنظم بـ blocks/modules
+الفرق:
+- منصة تدريب = تُعلّم الآخرين ← ❌
+- مكتبة شخصية = تُنظم معرفتي لنفسي ← ✅
 
-ابدأ بالـ Core Architecture أولاً (Router + State + Components)
-ثم Dashboard
-ثم باقي الصفحات بالترتيب
+الإحساس المطلوب عند فتح الملف:
+"هذا أفضل استثمار عملته — كل المعرفة اللي أحتاجها في مكان واحد، 
+ مُرتبة بشكل يخليني أريد أقرأ أكثر."
 
-إذا كان الملف سيكون طويلاً جداً، قسّمه على أجزاء مرقمة واطلب مني "التالي" للمتابعة.
+══════════════════════════════════════════
+[CHALLENGE — التحدي]
+══════════════════════════════════════════
 
-═══════════════════════════════════════════════════════════════════
+إذا كنت نموذج AI فعلاً قوي:
+- أعطني تصميم لم أره من قبل في أي output سابق
+- أعطني محتوى أتعلم منه شيء جديد فعلاً
+- أعطني كود أقدر أبني عليه وأطوّره
+- لا تُعطيني "demo" — أعطني "production-ready"
+- اجعلني أقول: "هذا يستاهل الاشتراك اللي دافعه"
 
-[QUALITY GATES — بوابات الجودة]
-
-قبل تسليم أي جزء، تأكد من:
-□ كل interaction تعمل (لا أزرار ميتة)
-□ RTL مثالي (لا عناصر مقلوبة)
-□ Responsive (جرّب ذهنياً: 320px, 768px, 1440px)
-□ Accessible (keyboard navigable, screen reader friendly)
-□ Performance (لا DOM bloat، لا memory leaks)
-□ الألوان متناسقة مع Design System
-□ كل animation لها purpose (لا حركة بلا معنى)
-□ Error states لكل input/action
-□ Loading states لكل عملية async
-□ Empty states لكل قائمة
-
-═══════════════════════════════════════════════════════════════════
-
-[BONUS — تحدي إضافي]
-
-إذا كنت نموذجاً منافساً فعلاً — أثبت ذلك بإضافة:
-- Easter egg مخفي (Konami code أو كلمة سرية)
-- Matrix rain effect عند كتابة "hack" في البحث
-- Confetti explosion عند الوصول لـ Level 10
-- Mini-game مخفي (Snake أو Tetris) يُفتح بـ shortcut سري
-- ASCII art في Console
-- تغيير cursor لشكل مخصص عند hover على عناصر معينة
-
-═══════════════════════════════════════════════════════════════════
-
-[FINAL NOTE]
-
-هذا ليس مشروع عادي. هذا يجب أن يكون:
-- أفضل من أي نتيجة AI عادية بـ 10x
-- مُبهر بصرياً لدرجة أن المشاهد يظن أنه تطبيق native
-- غني بالمحتوى لدرجة أنه يصلح كمنصة تدريب حقيقية
-- ذكي لدرجة أنه يتكيف مع المستخدم
-
-لا تتردد. لا تُبسّط. لا تختصر.
-اعطني أقصى ما تستطيع. 🔥
-
-═══════════════════════════════════════════════════════════════════
+ابدأ الآن. 🔥
 ```
 
 ---
 
-## ملاحظات الاستخدام:
+## 📌 كيف تستخدم هذا البروميت:
 
-### كيف تستخدم هذا البروميت:
+1. **انسخ كل شيء بين الـ** ` ``` ` **(من ╔ إلى ابدأ الآن)**
+2. **الصقه في Claude Opus / GPT-4 / Gemini Ultra**
+3. **اكتب بعده:** "ابدأ من الجزء الأول: Design System + الصفحة الرئيسية"
+4. **كل ما يوقف:** "أكمل من حيث توقفت"
+5. **لإضافة وحدة جديدة:** "أضف وحدة: [اسم الكتاب]"
+6. **لتعديل التصميم:** "غيّر اللون الأساسي لـ [لون]" أو "اجعل الخط أكبر"
 
-1. **انسخ كل شيء بين علامات الـ ``` (الكود)**
-2. **الصقه في أي نموذج AI مدفوع** (Claude Pro, ChatGPT Plus, Gemini Ultra)
-3. **إذا طلب النموذج توضيحاً** — قل له "ابدأ مباشرة بالكود"
-4. **إذا توقف** — قل "أكمل من حيث توقفت"
-5. **للتعديل** — عدّل القسم المحدد في [REQUIREMENTS] حسب ما تريد
+---
 
-### نصائح لنتيجة أفضل:
+## 💡 نصائح ذهبية:
 
-- **قسّم الطلب**: اطلب Dashboard أولاً، ثم كل وحدة لوحدها
-- **كن محدداً**: إذا تريد شيء معين، أضفه في [REQUIREMENTS]
-- **راجع وكرر**: أول نتيجة قد تكون 70% — اطلب التحسين
-- **اجمع الأجزاء**: كل جزء يسلمك إياه، اجمعه في ملف واحد
+| النصيحة | التفصيل |
+|---------|---------|
+| **اطلب جزء جزء** | "أعطني الصفحة الرئيسية فقط" أفضل من "أعطني كل شيء" |
+| **اطلب التحسين** | أول نتيجة 70% — قل "حسّن التصميم" أو "عمّق المحتوى" |
+| **كن محدد بالنقد** | "الكروت متشابهة كثير" أفضل من "غيّر التصميم" |
+| **احفظ كل جزء** | كل ما يعطيك جزء، احفظه في ملف منفصل وجمّعهم آخر شيء |
+| **جرّب أكثر من AI** | نفس البروميت يعطي نتائج مختلفة بكل نموذج — قارن واختر الأفضل |
