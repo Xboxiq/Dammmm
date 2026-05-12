@@ -370,6 +370,320 @@ kbd {
   font-size: 10px;
   color: var(--text-secondary);
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   FEATURED CONTENT — Pull Quotes, Golden Rules, Progress
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Pull Quote — Editorial magazine-style */
+.pull-quote {
+  position: relative;
+  margin: 2rem 0;
+  padding: 1.75rem 2rem 1.75rem 2.5rem;
+  border-right: 3px solid var(--accent);
+  background: linear-gradient(135deg, rgba(102,252,241,0.03) 0%, transparent 60%);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+.pull-quote::before {
+  content: '"';
+  position: absolute;
+  top: -8px;
+  right: 12px;
+  font-size: 4rem;
+  font-family: Georgia, serif;
+  color: var(--accent);
+  opacity: 0.15;
+  line-height: 1;
+}
+.pull-quote p {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.9;
+  color: var(--text-primary);
+  margin: 0;
+}
+.pull-quote cite {
+  display: block;
+  margin-top: 0.75rem;
+  font-size: 0.75rem;
+  font-style: normal;
+  color: var(--text-secondary);
+  letter-spacing: 0.3px;
+}
+
+/* Golden Rule Card */
+.golden-rule {
+  position: relative;
+  margin: 1.5rem 0;
+  padding: 1.25rem 1.5rem;
+  background: linear-gradient(135deg, rgba(245,158,11,0.06) 0%, rgba(234,179,8,0.03) 100%);
+  border: 1px solid rgba(245,158,11,0.2);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.golden-rule::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, #F59E0B, #EAB308);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+.golden-rule-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: #F59E0B;
+  margin-bottom: 0.5rem;
+}
+.golden-rule-label::before {
+  content: '🏆';
+  font-size: 1rem;
+}
+.golden-rule-text {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.8;
+}
+.golden-rule-text strong {
+  color: #F59E0B;
+}
+
+/* Fatal Error Card */
+.fatal-error {
+  position: relative;
+  margin: 1.5rem 0;
+  padding: 1.25rem 1.5rem;
+  background: linear-gradient(135deg, rgba(239,68,68,0.05) 0%, rgba(239,68,68,0.02) 100%);
+  border: 1px solid rgba(239,68,68,0.18);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.fatal-error::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, #EF4444, #DC2626);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+.fatal-error-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: #EF4444;
+  margin-bottom: 0.5rem;
+}
+.fatal-error-label::before {
+  content: '⚠️';
+  font-size: 1rem;
+}
+.fatal-error-text {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+/* Scenario Progress Indicator */
+.scenario-progress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 1rem 0;
+  padding: 0.75rem 1rem;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+.scenario-progress-bar {
+  flex: 1;
+  height: 6px;
+  background: var(--surface-2);
+  border-radius: 99px;
+  overflow: hidden;
+  position: relative;
+}
+.scenario-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), #06B6D4);
+  border-radius: 99px;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+.scenario-progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  animation: progressShimmer 2s ease-in-out infinite;
+}
+@keyframes progressShimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+.scenario-progress-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  min-width: 70px;
+  text-align: left;
+  font-family: var(--font-en);
+}
+.scenario-progress-label span {
+  color: var(--accent);
+  font-weight: 800;
+}
+
+/* Featured Content Card */
+.featured-card {
+  position: relative;
+  margin: 1.5rem 0;
+  padding: 1.5rem 1.75rem;
+  background: linear-gradient(140deg, rgba(102,252,241,0.04) 0%, rgba(6,182,212,0.02) 100%);
+  border: 1px solid rgba(102,252,241,0.15);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.featured-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(ellipse at center, rgba(102,252,241,0.04), transparent 70%);
+  pointer-events: none;
+}
+.featured-card-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+  padding: 4px 10px;
+  background: rgba(102,252,241,0.08);
+  border: 1px solid rgba(102,252,241,0.15);
+  border-radius: 99px;
+}
+.featured-card-eyebrow .dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 99px;
+  background: var(--accent);
+  box-shadow: 0 0 6px var(--accent);
+  animation: featuredPulse 2s ease-in-out infinite;
+}
+@keyframes featuredPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.featured-card-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.2px;
+}
+.featured-card-body {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.85;
+}
+
+/* Module Stats Badge */
+.module-stats {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 14px;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin: 0.5rem 0;
+}
+.module-stat-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+}
+.module-stat-item .num {
+  font-family: var(--font-en);
+  font-weight: 800;
+  color: var(--accent);
+  font-size: 0.8rem;
+}
+
+/* Scenario Level Badges — Enhanced */
+.level-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 99px;
+}
+.level-badge.best {
+  background: rgba(102,252,241,0.1);
+  color: var(--accent);
+  border: 1px solid rgba(102,252,241,0.25);
+  box-shadow: 0 0 12px rgba(102,252,241,0.1);
+}
+.level-badge.good {
+  background: rgba(34,197,94,0.08);
+  color: #22C55E;
+  border: 1px solid rgba(34,197,94,0.2);
+}
+.level-badge.bad {
+  background: rgba(239,68,68,0.08);
+  color: #EF4444;
+  border: 1px solid rgba(239,68,68,0.2);
+}
+
+/* Principle Connection Line */
+.principle-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--accent);
+  padding: 4px 10px;
+  background: rgba(102,252,241,0.06);
+  border: 1px solid rgba(102,252,241,0.12);
+  border-radius: 99px;
+  margin-top: 0.75rem;
+}
+.principle-tag::before {
+  content: '◆';
+  font-size: 0.5rem;
+  opacity: 0.6;
+}
 </style>
 </head>
 <body data-theme="dark">
@@ -1587,6 +1901,10 @@ const DATA = {
 <script src="scenarios-sales-extra.js"></script>
 <script src="scenarios-negotiation-extra.js"></script>
 <script src="scenarios-eq-social-extra.js"></script>
+<script src="scenarios-callcenter-extra.js"></script>
+<script src="scenarios-social-extra.js"></script>
+<script src="scenarios-field-sales-extra.js"></script>
+<script src="scenarios-influence-extra.js"></script>
 
 <script>
 /* ══════════════════════════════════════════
@@ -1693,7 +2011,7 @@ function renderHome(container) {
               <div class="bento-module-item" onclick="navigateTo('module','${m.id}')">
                 <span class="bento-module-icon">${m.icon}</span>
                 <span class="bento-module-name">${m.title}</span>
-                <span class="bento-module-count">${m.principleCount} مبادئ · ${m.scenarioCount} سيناريو</span>
+                <span class="bento-module-count">${m.principleCount} مبادئ · ${m.scenarios.length} سيناريو</span>
               </div>
             `).join('')}
           </div>
@@ -1709,7 +2027,7 @@ function renderHome(container) {
             </div>
             <div class="bento-module-item" onclick="navigateTo('scenarios')">
               <span class="bento-module-icon">🎯</span>
-              <span class="bento-module-name">سيناريوهات</span>
+              <span class="bento-module-name">سيناريوهات <span class="font-en" style="color:var(--accent);font-size:10px;margin-right:4px">${DATA.modules.reduce((a,m) => a + m.scenarios.length, 0)}</span></span>
             </div>
             <div class="bento-module-item" onclick="navigateTo('settings')">
               <span class="bento-module-icon">⚙️</span>
@@ -1771,7 +2089,16 @@ function renderModule(container) {
       </article>
     `).join('');
   } else if (currentSection === 'scenarios') {
-    contentHTML = `<div class="scenario-container">${renderScenariosContent(mod)}</div>`;
+    const state = Store.get();
+    const completedScenarios = (state.completedScenarios && state.completedScenarios[mod.id]) ? state.completedScenarios[mod.id].length : 0;
+    const totalScenarios = mod.scenarios.length;
+    const progressPct = totalScenarios > 0 ? Math.round((completedScenarios / totalScenarios) * 100) : 0;
+    contentHTML = `
+      <div class="scenario-progress">
+        <div class="scenario-progress-label"><span>${completedScenarios}</span> / ${totalScenarios} مكتمل</div>
+        <div class="scenario-progress-bar"><div class="scenario-progress-fill" style="width:${progressPct}%"></div></div>
+      </div>
+      <div class="scenario-container">${renderScenariosContent(mod)}</div>`;
   } else if (currentSection === 'recall') {
     contentHTML = `<div class="recall-container">${renderRecallContent(mod)}</div>`;
   } else if (currentSection === 'cheatsheet') {
@@ -2054,6 +2381,23 @@ function selectScenario(scenarioIdx, optIdx, level) {
 
   const explanation = document.getElementById(`sexp-${scenarioIdx}`);
   if (explanation) explanation.classList.add('show');
+
+  // Track completed scenarios for progress
+  const state = Store.get();
+  if (!state.completedScenarios) state.completedScenarios = {};
+  if (!state.completedScenarios[currentModule]) state.completedScenarios[currentModule] = [];
+  if (!state.completedScenarios[currentModule].includes(scenarioIdx)) {
+    state.completedScenarios[currentModule].push(scenarioIdx);
+    Store.set(state);
+    // Update progress bar
+    const totalScenarios = mod.scenarios.length;
+    const completedCount = state.completedScenarios[currentModule].length;
+    const pct = Math.round((completedCount / totalScenarios) * 100);
+    const fill = document.querySelector('.scenario-progress-fill');
+    const label = document.querySelector('.scenario-progress-label');
+    if (fill) fill.style.width = pct + '%';
+    if (label) label.innerHTML = `<span>${completedCount}</span> / ${totalScenarios} مكتمل`;
+  }
 }
 
 /* --- Flashcard / Recall System --- */
